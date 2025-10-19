@@ -1,0 +1,33 @@
+{
+  "name": "8-bits-processor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A step-by-step implementation of an 8-bit processor, from basic transistors to a complete CPU simulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:bit": "node ./bit/transistor.js"
+  },
+  "keywords": [
+    "processor",
+    "cpu",
+    "8-bit",
+    "simulation",
+    "educational",
+    "transistor",
+    "digital-logic",
+    "computer-architecture",
+    "javascript",
+    "hardware-simulation"
+  ],
+  "author": "Carlos Cochero",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caertos/8-BitsProcessor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caertos/8-BitsProcessor/issues"
+  },
+  "homepage": "https://github.com/caertos/8-BitsProcessor#readme"
+}
