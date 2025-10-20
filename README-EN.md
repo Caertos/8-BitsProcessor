@@ -11,6 +11,8 @@ This project documents the journey of building a complete understanding of digit
 ### ✅ Completed Components
 - **Bit Implementation** - Basic transistor simulation with JavaScript abstraction
   - 📋 [Development Log (Bilingual)](./bit/bitacora1.1.1.md)
+- **Logic Gates** - Complete implementation of AND, OR, NOT, XOR with hardware simulations
+  - 📋 [Development Log (Bilingual)](./logicGates/bitacora1.1.2.md)
 
 ## 📁 Project Structure
 
@@ -20,6 +22,15 @@ This project documents the journey of building a complete understanding of digit
 │   ├── bit.js             # Core bit logic
 │   ├── transistor.js      # Hardware simulation test
 │   └── bitacora1.1.1.md   # Development log (Bilingual)
+├── logicGates/             # Fundamental logic gates
+│   ├── logicGates.js      # Implementation of AND, OR, NOT, XOR
+│   ├── logicGatesTest.js  # Exhaustive tests with visualization
+│   ├── bitacora1.1.2.md   # Development log (Bilingual)
+│   ├── AND.png            # AND gate simulation in Tinkercad
+│   ├── OR.png             # OR gate simulation in Tinkercad
+│   ├── NOT.png            # NOT gate simulation in Tinkercad
+│   ├── XOR-OFF.png        # XOR simulation - OFF state
+│   └── XOR-ON.png         # XOR simulation - ON state
 └── [other components as they are developed]
 ```
 
@@ -40,6 +51,24 @@ const result = bit(1); // Returns 1 (ON)
 const result2 = bit(0); // Returns 0 (OFF)
 ```
 
+### Logic Gates
+The fundamental building blocks for logical operations. Complete implementation includes:
+
+- **Hardware Simulations**: Real circuits in Tinkercad for AND, OR, NOT, XOR
+- **Modular Implementation**: Individually exportable JavaScript functions
+- **Exhaustive Testing**: Complete truth table coverage with emoji visualization
+- **Technical Analysis**: Documented hardware-software correspondence
+
+```javascript
+import { AND, OR, NOT, XOR } from "./logicGates/logicGates.js";
+
+// Basic operations
+const result1 = AND(1, 1); // Returns 1 (🟡)
+const result2 = OR(0, 1);  // Returns 1 (🟡)
+const result3 = NOT(1);    // Returns 0 (⚫)
+const result4 = XOR(1, 0); // Returns 1 (🟡)
+```
+
 ## 🚦 Quick Start
 
 ```bash
@@ -49,6 +78,9 @@ cd 8-BitsProcessor
 
 # Test basic bit functionality
 npm run test:bit
+
+# Test logic gates
+npm run test:logicGates
 ```
 
 ## 🤝 Contributing
@@ -65,10 +97,11 @@ See our [Contributing Guide](./CONTRIBUTING.md) for detailed information.
 ## 📚 Learning Path
 
 1. **Start with Bit**: Understand digital states and transistor switching
-2. **Build Register**: Combine 8 bits for data storage
-3. **Create ALU**: Implement arithmetic and logical operations
-4. **Add Control**: Create instruction decoding and execution
-5. **Complete CPU**: Integrate all components
+2. **Implement Logic Gates**: Master fundamental boolean operations (AND, OR, NOT, XOR)
+3. **Build Register**: Combine 8 bits for data storage
+4. **Create ALU**: Implement arithmetic and logical operations using gates
+5. **Add Control**: Create instruction decoding and execution
+6. **Complete CPU**: Integrate all components
 
 ## 🔬 Hardware Foundation
 
