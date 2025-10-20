@@ -18,11 +18,11 @@ Este proyecto documenta el viaje de construir una comprensión completa de los p
 
 ```
 8-BitsProcessor/
-├── bit/                    # Implementación básica de bit
-│   ├── bit.js             # Lógica central del bit
+├── bit/                    # Capa fundamental - normalización de estados digitales
+│   ├── bit.js             # Lógica central del bit (base para todos los componentes)
 │   └── bitacora1.1.1.md   # Bitácora de desarrollo (Bilingüe)
-├── logicGates/             # Compuertas lógicas fundamentales
-│   ├── logicGates.js      # Implementación de AND, OR, NOT, XOR
+├── logicGates/             # Capa lógica - construida sobre la base de bit.js
+│   ├── logicGates.js      # Implementación de AND, OR, NOT, XOR (usa bit.js)
 │   ├── bitacora1.1.2.md   # Bitácora de desarrollo (Bilingüe)
 │   ├── AND.png            # Simulación de compuerta AND en Tinkercad
 │   ├── OR.png             # Simulación de compuerta OR en Tinkercad
@@ -60,18 +60,24 @@ const resultado2 = bit(0); // Retorna 0 (APAGADO)
 Los bloques de construcción fundamentales para operaciones lógicas. Implementación completa incluye:
 
 - **Simulaciones de Hardware**: Circuitos reales en Tinkercad para AND, OR, NOT, XOR
-- **Implementación Modular**: Funciones JavaScript exportables individualmente
+- **Implementación Modular**: Funciones JavaScript exportables individualmente construidas sobre la base de `bit.js`
+- **Arquitectura Jerárquica**: Todas las compuertas usan la función `bit()` para normalización consistente de entradas/salidas
+- **Robustez Mejorada**: Pueden manejar cualquier tipo de entrada (números, strings, objetos, null) mediante integración con `bit()`
 - **Pruebas Exhaustivas**: Cobertura completa de tablas de verdad con visualización emoji mediante `test/logicGates/logicGatesTest.js`
 - **Análisis Técnico**: Correspondencia hardware-software documentada
 
 ```javascript
 import { AND, OR, NOT, XOR } from "./logicGates/logicGates.js";
 
-// Operaciones básicas
-const resultado1 = AND(1, 1); // Retorna 1 (🟡)
-const resultado2 = OR(0, 1);  // Retorna 1 (🟡)
-const resultado3 = NOT(1);    // Retorna 0 (⚫)
-const resultado4 = XOR(1, 0); // Retorna 1 (🟡)
+// Operaciones básicas - ahora construidas sobre la base de bit()
+const resultado1 = AND(1, 1); // Retorna 1 (🟡) - normalizado via bit()
+const resultado2 = OR(0, 1);  // Retorna 1 (🟡) - normalizado via bit()
+const resultado3 = NOT(1);    // Retorna 0 (⚫) - normalizado via bit()
+const resultado4 = XOR(1, 0); // Retorna 1 (🟡) - normalizado via bit()
+
+// Robustez mejorada - maneja cualquier tipo de entrada
+const resultado5 = AND(2, "hola"); // Retorna 1 (🟡) - ambos truthy, normalizado a 1
+const resultado6 = OR(0, null);    // Retorna 0 (⚫) - ambos falsy, normalizado a 0
 ```
 
 ### Sistema de Visualización
@@ -112,6 +118,41 @@ test/
 ```
 
 Esta arquitectura asegura que conforme el procesador crezca en complejidad, el framework de pruebas permanezca organizado y mantenible.
+
+## 🏗️ Arquitectura Jerárquica
+
+Nuestro procesador sigue una arquitectura jerárquica bien diseñada donde cada capa se construye sobre la anterior:
+
+### Jerarquía de Componentes
+```
+bit.js (Capa Fundamental)
+  ↓ proporciona normalización
+logicGates.js (Capa Lógica)
+  ↓ proporcionará operaciones básicas
+[Futuro: ALU] (Capa Aritmética)
+  ↓ proporcionará cálculos
+[Futuro: CPU] (Capa de Control)
+```
+
+### Beneficios del Diseño Jerárquico
+- **Única Fuente de Verdad**: `bit.js` maneja toda la normalización de estados digitales
+- **Comportamiento Consistente**: Todos los componentes usan la misma lógica de representación de bits
+- **Base Escalable**: Nuevos componentes automáticamente heredan manejo robusto de entradas
+- **Código Mantenible**: Cambios en la lógica central se propagan a través de la jerarquía
+- **Manejo Robusto de Errores**: Entradas inválidas se normalizan en el nivel fundamental
+
+### Detalles de Implementación
+Cada compuerta lógica ahora usa `bit()` tanto para normalización de entradas como para consistencia de salidas:
+```javascript
+// Ejemplo: implementación de compuerta AND
+export function AND(input1, input2) {
+    const normalizedInput1 = bit(input1);  // Normalización de capa fundamental
+    const normalizedInput2 = bit(input2);  // Normalización de capa fundamental
+    return bit(normalizedInput1 && normalizedInput2);  // Salida consistente
+}
+```
+
+Este enfoque asegura que sin importar qué tipo de datos se pasen a nuestras compuertas lógicas (números, strings, objetos, null, undefined), siempre producirán salidas digitales consistentes y confiables.
 
 ## 🚦 Inicio Rápido
 

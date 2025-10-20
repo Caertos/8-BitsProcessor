@@ -18,11 +18,11 @@ This project documents the journey of building a complete understanding of digit
 
 ```
 8-BitsProcessor/
-├── bit/                    # Basic bit implementation
-│   ├── bit.js             # Core bit logic
+├── bit/                    # Foundation layer - digital state normalization
+│   ├── bit.js             # Core bit logic (foundation for all components)
 │   └── bitacora1.1.1.md   # Development log (Bilingual)
-├── logicGates/             # Fundamental logic gates
-│   ├── logicGates.js      # Implementation of AND, OR, NOT, XOR
+├── logicGates/             # Logic layer - built on bit.js foundation
+│   ├── logicGates.js      # Implementation of AND, OR, NOT, XOR (uses bit.js)
 │   ├── bitacora1.1.2.md   # Development log (Bilingual)
 │   ├── AND.png            # AND gate simulation in Tinkercad
 │   ├── OR.png             # OR gate simulation in Tinkercad
@@ -60,18 +60,24 @@ const result2 = bit(0); // Returns 0 (OFF)
 The fundamental building blocks for logical operations. Complete implementation includes:
 
 - **Hardware Simulations**: Real circuits in Tinkercad for AND, OR, NOT, XOR
-- **Modular Implementation**: Individually exportable JavaScript functions
+- **Modular Implementation**: Individually exportable JavaScript functions built on `bit.js` foundation
+- **Hierarchical Architecture**: All gates use `bit()` function for consistent input/output normalization
+- **Enhanced Robustness**: Can handle any input type (numbers, strings, objects, null) via `bit()` integration
 - **Exhaustive Testing**: Complete truth table coverage with emoji visualization via `test/logicGates/logicGatesTest.js`
 - **Technical Analysis**: Documented hardware-software correspondence
 
 ```javascript
 import { AND, OR, NOT, XOR } from "./logicGates/logicGates.js";
 
-// Basic operations
-const result1 = AND(1, 1); // Returns 1 (🟡)
-const result2 = OR(0, 1);  // Returns 1 (🟡)
-const result3 = NOT(1);    // Returns 0 (⚫)
-const result4 = XOR(1, 0); // Returns 1 (🟡)
+// Basic operations - now built on bit() foundation
+const result1 = AND(1, 1); // Returns 1 (🟡) - normalized via bit()
+const result2 = OR(0, 1);  // Returns 1 (🟡) - normalized via bit()
+const result3 = NOT(1);    // Returns 0 (⚫) - normalized via bit()
+const result4 = XOR(1, 0); // Returns 1 (🟡) - normalized via bit()
+
+// Enhanced robustness - handles any input type
+const result5 = AND(2, "hello"); // Returns 1 (🟡) - both truthy, normalized to 1
+const result6 = OR(0, null);     // Returns 0 (⚫) - both falsy, normalized to 0
 ```
 
 ### Visualization System
@@ -112,6 +118,41 @@ test/
 ```
 
 This architecture ensures that as the processor grows in complexity, the testing framework remains organized and maintainable.
+
+## 🏗️ Hierarchical Architecture
+
+Our processor follows a well-designed hierarchical architecture where each layer builds upon the previous one:
+
+### Component Hierarchy
+```
+bit.js (Foundation Layer)
+  ↓ provides normalization
+logicGates.js (Logic Layer) 
+  ↓ will provide basic operations
+[Future: ALU] (Arithmetic Layer)
+  ↓ will provide calculations
+[Future: CPU] (Control Layer)
+```
+
+### Benefits of Hierarchical Design
+- **Single Source of Truth**: `bit.js` handles all digital state normalization
+- **Consistent Behavior**: All components use the same bit representation logic
+- **Scalable Foundation**: New components automatically inherit robust input handling
+- **Maintainable Code**: Changes to core logic propagate through the hierarchy
+- **Robust Error Handling**: Invalid inputs are normalized at the foundation level
+
+### Implementation Details
+Each logic gate now uses `bit()` for both input normalization and output consistency:
+```javascript
+// Example: AND gate implementation
+export function AND(input1, input2) {
+    const normalizedInput1 = bit(input1);  // Foundation layer normalization
+    const normalizedInput2 = bit(input2);  // Foundation layer normalization
+    return bit(normalizedInput1 && normalizedInput2);  // Consistent output
+}
+```
+
+This approach ensures that no matter what type of data is passed to our logic gates (numbers, strings, objects, null, undefined), they will always produce consistent, reliable digital outputs.
 
 ## 🚦 Quick Start
 
