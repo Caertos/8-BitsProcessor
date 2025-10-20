@@ -68,7 +68,7 @@
 - 2x Interruptores (Switch) como entradas A y B
 - 1x Transistor NPN para cada entrada
 - 2x Resistencias de 1kΩ (bases de transistores)
-- 1x Resistencia de 220Ω (limitadora de corriente del LED)
+- 1x Resistencia limitadora de corriente del LED
 - 1x LED como indicador de salida
 - Conexiones en serie para simular operación AND
 
@@ -85,7 +85,7 @@
 - 2x Interruptores (Switch) como entradas A y B
 - 2x Transistores NPN en paralelo
 - 2x Resistencias de 1kΩ (bases de transistores)
-- 1x Resistencia de 220Ω (limitadora de corriente del LED)
+- 1x Resistencia limitadora de corriente del LED
 - 1x LED como indicador de salida
 - Conexiones en paralelo para simular operación OR
 
@@ -102,8 +102,7 @@
 - 1x Interruptor (Switch) como entrada A
 - 1x Transistor NPN configurado como inversor
 - 1x Resistencia de 1kΩ (base del transistor)
-- 1x Resistencia de 220Ω (pull-up para el LED)
-- 1x Resistencia de 220Ω (limitadora de corriente del LED)
+- Resistencias de pull-up y limitadoras según diseño del circuito
 - 1x LED como indicador de salida
 - Configuración inversora: LED encendido cuando entrada está desactivada
 
@@ -122,8 +121,8 @@
 **Configuración del circuito:**
 - 2x Interruptores (Switch) como entradas A y B
 - 4x Transistores NPN configurados como compuertas lógicas
-- 4x Resistencias de 1kΩ (bases de transistores)
-- 1x Resistencia de 220Ω (limitadora de corriente del LED)
+- 4x resistencias de 1kΩ (bases de transistores)
+- 1x Resistencia de 3.3kΩ (limitadora de corriente del LED)
 - 1x LED como indicador de salida
 - Implementación usando: XOR = (A AND NOT B) OR (NOT A AND B)
 
@@ -141,10 +140,10 @@
 ✅ **XOR:** Comportamiento verificado - Se activa solo con entradas diferentes  
 
 #### 2. Consideraciones de Hardware
-- **Corriente del LED:** Calculada para mantenerse bajo 20mA con resistencias de 220Ω
+- **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
 - **Configuración de transistores:** NPN utilizados como switches digitales
 - **Resistencias de base:** 1kΩ para limitar corriente de base y proteger transistores
-- **Alimentación:** 5V utilizado para compatibilidad con lógica digital estándar
+- **Alimentación:** 9V utilizado para suministro de energía principal
 
 #### 3. Correspondencia Hardware-Software
 - **Estados binarios:** Representación física (LED ON/OFF) corresponde a software (1/0)
@@ -436,7 +435,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 - 2x Switches as inputs A and B
 - 1x NPN Transistor for each input
 - 2x 1kΩ Resistors (transistor bases)
-- 1x 220Ω Resistor (LED current limiter)
+- 1x LED current limiting resistor
 - 1x LED as output indicator
 - Series connections to simulate AND operation
 
@@ -453,7 +452,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 - 2x Switches as inputs A and B
 - 2x NPN Transistors in parallel
 - 2x 1kΩ Resistors (transistor bases)
-- 1x 220Ω Resistor (LED current limiter)
+- 1x LED current limiting resistor
 - 1x LED as output indicator
 - Parallel connections to simulate OR operation
 
@@ -470,8 +469,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 - 1x Switch as input A
 - 1x NPN Transistor configured as inverter
 - 1x 1kΩ Resistor (transistor base)
-- 1x 220Ω Resistor (LED pull-up)
-- 1x 220Ω Resistor (LED current limiter)
+- Pull-up and current limiting resistors according to circuit design
 - 1x LED as output indicator
 - Inverter configuration: LED on when input is deactivated
 
@@ -491,7 +489,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 - 2x Switches as inputs A and B
 - 4x NPN Transistors configured as logic gates
 - 4x 1kΩ Resistors (transistor bases)
-- 1x 220Ω Resistor (LED current limiter)
+- 1x 3.3kΩ Resistor (LED current limiter)
 - 1x LED as output indicator
 - Implementation using: XOR = (A AND NOT B) OR (NOT A AND B)
 
@@ -509,10 +507,10 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 ✅ **XOR:** Behavior verified - Only activates with different inputs  
 
 #### 2. Hardware Considerations
-- **LED Current:** Calculated to stay under 20mA with 220Ω resistors
+- **LED Current:** Calculated according to specific resistors in each circuit
 - **Transistor Configuration:** NPN used as digital switches
 - **Base Resistors:** 1kΩ to limit base current and protect transistors
-- **Power Supply:** 5V used for standard digital logic compatibility
+- **Power Supply:** 9V used for main power supply
 
 #### 3. Hardware-Software Correspondence
 - **Binary States:** Physical representation (LED ON/OFF) corresponds to software (1/0)
