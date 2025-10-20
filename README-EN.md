@@ -20,17 +20,22 @@ This project documents the journey of building a complete understanding of digit
 8-BitsProcessor/
 ├── bit/                    # Basic bit implementation
 │   ├── bit.js             # Core bit logic
-│   ├── transistor.js      # Hardware simulation test
 │   └── bitacora1.1.1.md   # Development log (Bilingual)
 ├── logicGates/             # Fundamental logic gates
 │   ├── logicGates.js      # Implementation of AND, OR, NOT, XOR
-│   ├── logicGatesTest.js  # Exhaustive tests with visualization
 │   ├── bitacora1.1.2.md   # Development log (Bilingual)
 │   ├── AND.png            # AND gate simulation in Tinkercad
 │   ├── OR.png             # OR gate simulation in Tinkercad
 │   ├── NOT.png            # NOT gate simulation in Tinkercad
 │   ├── XOR-OFF.png        # XOR simulation - OFF state
 │   └── XOR-ON.png         # XOR simulation - ON state
+├── test/                   # Test suite with organized structure
+│   ├── bit/               # Bit component tests
+│   │   └── transistorTest.js  # Hardware simulation test
+│   ├── logicGates/        # Logic gates tests
+│   │   └── logicGatesTest.js  # Exhaustive tests with visualization
+│   └── visualizeLogic/    # Centralized visualization utilities
+│       └── visualizer.js  # Emoji-based test output functions
 └── [other components as they are developed]
 ```
 
@@ -41,7 +46,7 @@ The most basic unit of digital information. Our implementation includes:
 
 - **Hardware Simulation**: Transistor-based circuit in Tinkercad
 - **Software Abstraction**: JavaScript function that mimics transistor behavior
-- **Testing**: Automated switching between states (0/1)
+- **Testing**: Automated switching between states (0/1) via `test/bit/transistorTest.js`
 
 ```javascript
 import { bit } from "./bit/bit.js";
@@ -56,7 +61,7 @@ The fundamental building blocks for logical operations. Complete implementation 
 
 - **Hardware Simulations**: Real circuits in Tinkercad for AND, OR, NOT, XOR
 - **Modular Implementation**: Individually exportable JavaScript functions
-- **Exhaustive Testing**: Complete truth table coverage with emoji visualization
+- **Exhaustive Testing**: Complete truth table coverage with emoji visualization via `test/logicGates/logicGatesTest.js`
 - **Technical Analysis**: Documented hardware-software correspondence
 
 ```javascript
@@ -68,6 +73,45 @@ const result2 = OR(0, 1);  // Returns 1 (🟡)
 const result3 = NOT(1);    // Returns 0 (⚫)
 const result4 = XOR(1, 0); // Returns 1 (🟡)
 ```
+
+### Visualization System
+Our testing framework includes a centralized visualization system for consistent output:
+
+- **Centralized Display Functions**: All visual output handled by `test/visualizeLogic/visualizer.js`
+- **Emoji-Based Feedback**: Consistent use of 🟡 (HIGH/1) and ⚫ (LOW/0) across all tests
+- **Modular Design**: Reusable functions for different gate types and operations
+- **Clean Separation**: Logic and presentation concerns properly separated
+
+```javascript
+import { bitToEmoji, displayANDTest } from "./test/visualizeLogic/visualizer.js";
+
+// Convert any bit value to emoji
+const visual = bitToEmoji(1); // Returns "🟡"
+
+// Display formatted test results
+displayANDTest(1, 0, 0); // "The result of AND between 🟡 and ⚫ is: ⚫"
+```
+
+## 🧪 Test Architecture
+
+Our project follows a well-organized testing structure that separates concerns and promotes code reusability:
+
+### Benefits of Separated Test Structure
+- **Clean Separation**: Production code and tests are clearly separated
+- **Centralized Visualization**: All output formatting handled by dedicated visualizer module
+- **Scalability**: Easy to add new components and their corresponding tests
+- **Maintainability**: Changes to visualization logic only require updates in one place
+- **Consistency**: Uniform visual output across all test suites
+
+### Test Organization
+```
+test/
+├── bit/                    # Component-specific tests
+├── logicGates/            # Logic gate tests
+└── visualizeLogic/        # Shared visualization utilities
+```
+
+This architecture ensures that as the processor grows in complexity, the testing framework remains organized and maintainable.
 
 ## 🚦 Quick Start
 

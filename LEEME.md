@@ -20,17 +20,22 @@ Este proyecto documenta el viaje de construir una comprensión completa de los p
 8-BitsProcessor/
 ├── bit/                    # Implementación básica de bit
 │   ├── bit.js             # Lógica central del bit
-│   ├── transistor.js      # Prueba de simulación de hardware
 │   └── bitacora1.1.1.md   # Bitácora de desarrollo (Bilingüe)
 ├── logicGates/             # Compuertas lógicas fundamentales
 │   ├── logicGates.js      # Implementación de AND, OR, NOT, XOR
-│   ├── logicGatesTest.js  # Pruebas exhaustivas con visualización
 │   ├── bitacora1.1.2.md   # Bitácora de desarrollo (Bilingüe)
 │   ├── AND.png            # Simulación de compuerta AND en Tinkercad
 │   ├── OR.png             # Simulación de compuerta OR en Tinkercad
 │   ├── NOT.png            # Simulación de compuerta NOT en Tinkercad
 │   ├── XOR-OFF.png        # Simulación XOR - estado OFF
 │   └── XOR-ON.png         # Simulación XOR - estado ON
+├── test/                   # Suite de pruebas con estructura organizada
+│   ├── bit/               # Pruebas del componente bit
+│   │   └── transistorTest.js  # Prueba de simulación de hardware
+│   ├── logicGates/        # Pruebas de compuertas lógicas
+│   │   └── logicGatesTest.js  # Pruebas exhaustivas con visualización
+│   └── visualizeLogic/    # Utilidades de visualización centralizadas
+│       └── visualizer.js  # Funciones de salida de pruebas basadas en emojis
 └── [otros componentes conforme se desarrollen]
 ```
 
@@ -41,7 +46,7 @@ La unidad más básica de información digital. Nuestra implementación incluye:
 
 - **Simulación de Hardware**: Circuito basado en transistores en Tinkercad
 - **Abstracción de Software**: Función JavaScript que imita el comportamiento del transistor
-- **Pruebas**: Conmutación automatizada entre estados (0/1)
+- **Pruebas**: Conmutación automatizada entre estados (0/1) mediante `test/bit/transistorTest.js`
 
 ```javascript
 import { bit } from "./bit/bit.js";
@@ -56,7 +61,7 @@ Los bloques de construcción fundamentales para operaciones lógicas. Implementa
 
 - **Simulaciones de Hardware**: Circuitos reales en Tinkercad para AND, OR, NOT, XOR
 - **Implementación Modular**: Funciones JavaScript exportables individualmente
-- **Pruebas Exhaustivas**: Cobertura completa de tablas de verdad con visualización emoji
+- **Pruebas Exhaustivas**: Cobertura completa de tablas de verdad con visualización emoji mediante `test/logicGates/logicGatesTest.js`
 - **Análisis Técnico**: Correspondencia hardware-software documentada
 
 ```javascript
@@ -68,6 +73,45 @@ const resultado2 = OR(0, 1);  // Retorna 1 (🟡)
 const resultado3 = NOT(1);    // Retorna 0 (⚫)
 const resultado4 = XOR(1, 0); // Retorna 1 (🟡)
 ```
+
+### Sistema de Visualización
+Nuestro framework de pruebas incluye un sistema de visualización centralizado para salida consistente:
+
+- **Funciones de Visualización Centralizadas**: Toda la salida visual manejada por `test/visualizeLogic/visualizer.js`
+- **Retroalimentación Basada en Emojis**: Uso consistente de 🟡 (ALTO/1) y ⚫ (BAJO/0) en todas las pruebas
+- **Diseño Modular**: Funciones reutilizables para diferentes tipos de compuertas y operaciones
+- **Separación Limpia**: Responsabilidades de lógica y presentación apropiadamente separadas
+
+```javascript
+import { bitToEmoji, displayANDTest } from "./test/visualizeLogic/visualizer.js";
+
+// Convertir cualquier valor de bit a emoji
+const visual = bitToEmoji(1); // Retorna "🟡"
+
+// Mostrar resultados de prueba formateados
+displayANDTest(1, 0, 0); // "The result of AND between 🟡 and ⚫ is: ⚫"
+```
+
+## 🧪 Arquitectura de Pruebas
+
+Nuestro proyecto sigue una estructura de pruebas bien organizada que separa responsabilidades y promueve la reutilización de código:
+
+### Beneficios de la Estructura de Pruebas Separada
+- **Separación Limpia**: Código de producción y pruebas están claramente separados
+- **Visualización Centralizada**: Todo el formateo de salida manejado por módulo visualizador dedicado
+- **Escalabilidad**: Fácil agregar nuevos componentes y sus pruebas correspondientes
+- **Mantenibilidad**: Cambios en lógica de visualización solo requieren actualizaciones en un lugar
+- **Consistencia**: Salida visual uniforme en todas las suites de pruebas
+
+### Organización de Pruebas
+```
+test/
+├── bit/                    # Pruebas específicas de componente
+├── logicGates/            # Pruebas de compuertas lógicas
+└── visualizeLogic/        # Utilidades de visualización compartidas
+```
+
+Esta arquitectura asegura que conforme el procesador crezca en complejidad, el framework de pruebas permanezca organizado y mantenible.
 
 ## 🚦 Inicio Rápido
 
