@@ -6,6 +6,8 @@ A step-by-step implementation of an 8-bit processor, from basic transistors to a
 
 This project documents the journey of building a complete understanding of digital processors by implementing each component from the ground up, starting with basic transistors.
 
+📁 **[View Project Structure](./Structure.md)** - Detailed architecture and component organization
+
 ## 🚀 Current Progress
 
 ### ✅ Completed Components
@@ -13,31 +15,8 @@ This project documents the journey of building a complete understanding of digit
   - 📋 [Development Log (Bilingual)](./bit/bitacora1.1.1.md)
 - **Logic Gates** - Complete implementation of AND, OR, NOT, XOR with hardware simulations
   - 📋 [Development Log (Bilingual)](./logicGates/bitacora1.1.2.md)
-
-## 📁 Project Structure
-
-```
-8-BitsProcessor/
-├── bit/                    # Foundation layer - digital state normalization
-│   ├── bit.js             # Core bit logic (foundation for all components)
-│   └── bitacora1.1.1.md   # Development log (Bilingual)
-├── logicGates/             # Logic layer - built on bit.js foundation
-│   ├── logicGates.js      # Implementation of AND, OR, NOT, XOR (uses bit.js)
-│   ├── bitacora1.1.2.md   # Development log (Bilingual)
-│   ├── AND.png            # AND gate simulation in Tinkercad
-│   ├── OR.png             # OR gate simulation in Tinkercad
-│   ├── NOT.png            # NOT gate simulation in Tinkercad
-│   ├── XOR-OFF.png        # XOR simulation - OFF state
-│   └── XOR-ON.png         # XOR simulation - ON state
-├── test/                   # Test suite with organized structure
-│   ├── bit/               # Bit component tests
-│   │   └── transistorTest.js  # Hardware simulation test
-│   ├── logicGates/        # Logic gates tests
-│   │   └── logicGatesTest.js  # Exhaustive tests with visualization
-│   └── visualizeLogic/    # Centralized visualization utilities
-│       └── visualizer.js  # Emoji-based test output functions
-└── [other components as they are developed]
-```
+- **Derivative Gates** - Advanced gates built from basic logic gates (NAND)
+  - Hardware simulation and software implementation using existing gate combinations
 
 ## 🛠 Current Implementation
 
@@ -80,6 +59,25 @@ const result5 = AND(2, "hello"); // Returns 1 (🟡) - both truthy, normalized t
 const result6 = OR(0, null);     // Returns 0 (⚫) - both falsy, normalized to 0
 ```
 
+### Derivative Gates
+Advanced logic gates built by combining basic gates. Our implementation includes:
+
+- **Hierarchical Construction**: Built using existing AND, OR, NOT, XOR functions
+- **Hardware Correspondence**: Each derivative gate maps to real electronic circuits
+- **Consistent Architecture**: Uses the same bit() foundation through gate composition
+- **NAND Implementation**: NOT(AND(input1, input2)) - universal gate with complete logic capability
+
+```javascript
+import { NAND } from "./derivedGates/derivedGates.js";
+
+// NAND operations - built on existing gates
+const result1 = NAND(0, 0); // Returns 1 (🟡) - NOT(AND(0,0)) = NOT(0) = 1
+const result2 = NAND(1, 1); // Returns 0 (⚫) - NOT(AND(1,1)) = NOT(1) = 0
+
+// Enhanced robustness inherited from foundation
+const result3 = NAND("hello", 42); // Returns 0 (⚫) - both truthy, AND=1, NOT(1)=0
+```
+
 ### Visualization System
 Our testing framework includes a centralized visualization system for consistent output:
 
@@ -109,15 +107,7 @@ Our project follows a well-organized testing structure that separates concerns a
 - **Maintainability**: Changes to visualization logic only require updates in one place
 - **Consistency**: Uniform visual output across all test suites
 
-### Test Organization
-```
-test/
-├── bit/                    # Component-specific tests
-├── logicGates/            # Logic gate tests
-└── visualizeLogic/        # Shared visualization utilities
-```
-
-This architecture ensures that as the processor grows in complexity, the testing framework remains organized and maintainable.
+The testing framework is organized to remain maintainable as the processor grows in complexity.
 
 ## 🏗️ Hierarchical Architecture
 
@@ -128,7 +118,9 @@ Our processor follows a well-designed hierarchical architecture where each layer
 bit.js (Foundation Layer)
   ↓ provides normalization
 logicGates.js (Logic Layer) 
-  ↓ will provide basic operations
+  ↓ provides basic operations
+derivedGates.js (Derivative Layer)
+  ↓ will provide advanced operations
 [Future: ALU] (Arithmetic Layer)
   ↓ will provide calculations
 [Future: CPU] (Control Layer)
@@ -166,6 +158,9 @@ npm run test:bit
 
 # Test logic gates
 npm run test:logicGates
+
+# Test derivative gates
+npm run test:derivedGates
 ```
 
 ## 🤝 Contributing

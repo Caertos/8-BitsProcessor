@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:bit": "node ./test/bit/transistorTest.js",
-    "test:logicGates": "node ./test/logicGates/logicGatesTest.js"
+    "test:bit": "node ./test/transistorTest.js",
+    "test:logicGates": "node ./test/logicGatesTest.js",
+    "test:derivedGates": "node ./test/derivedGatesTest.js"
   },
   "keywords": [
     "processor",

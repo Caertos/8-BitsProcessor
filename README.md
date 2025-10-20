@@ -16,6 +16,10 @@ Complete project documentation in English with implementation details, progress 
 ### [🇪🇸 **Documentación en Español**](./LEEME.md)
 Documentación completa del proyecto en español con detalles de implementación, seguimiento del progreso y especificaciones técnicas.
 
+### [🏗️ **Project Structure**](./Structure.md) | [🏗️ **Estructura del Proyecto**](./Estructura.md)
+Detailed project organization, architecture, and component relationships. Updated with each development phase.
+Organización detallada del proyecto, arquitectura y relaciones entre componentes. Actualizada con cada fase de desarrollo.
+
 ---
 
 ## 🚀 Quick Start | Inicio Rápido

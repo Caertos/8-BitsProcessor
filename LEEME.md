@@ -6,6 +6,8 @@ Una implementación paso a paso de un procesador de 8 bits, desde transistores b
 
 Este proyecto documenta el viaje de construir una comprensión completa de los procesadores digitales implementando cada componente desde cero, comenzando con transistores básicos.
 
+📁 **[Ver Estructura del Proyecto](./Estructura.md)** - Arquitectura detallada y organización de componentes
+
 ## 🚀 Progreso Actual
 
 ### ✅ Componentes Completados
@@ -13,31 +15,8 @@ Este proyecto documenta el viaje de construir una comprensión completa de los p
   - 📋 [Bitácora de Desarrollo (Bilingüe)](./bit/bitacora1.1.1.md)
 - **Compuertas Lógicas** - Implementación completa de AND, OR, NOT, XOR con simulaciones de hardware
   - 📋 [Bitácora de Desarrollo (Bilingüe)](./logicGates/bitacora1.1.2.md)
-
-## 📁 Estructura del Proyecto
-
-```
-8-BitsProcessor/
-├── bit/                    # Capa fundamental - normalización de estados digitales
-│   ├── bit.js             # Lógica central del bit (base para todos los componentes)
-│   └── bitacora1.1.1.md   # Bitácora de desarrollo (Bilingüe)
-├── logicGates/             # Capa lógica - construida sobre la base de bit.js
-│   ├── logicGates.js      # Implementación de AND, OR, NOT, XOR (usa bit.js)
-│   ├── bitacora1.1.2.md   # Bitácora de desarrollo (Bilingüe)
-│   ├── AND.png            # Simulación de compuerta AND en Tinkercad
-│   ├── OR.png             # Simulación de compuerta OR en Tinkercad
-│   ├── NOT.png            # Simulación de compuerta NOT en Tinkercad
-│   ├── XOR-OFF.png        # Simulación XOR - estado OFF
-│   └── XOR-ON.png         # Simulación XOR - estado ON
-├── test/                   # Suite de pruebas con estructura organizada
-│   ├── bit/               # Pruebas del componente bit
-│   │   └── transistorTest.js  # Prueba de simulación de hardware
-│   ├── logicGates/        # Pruebas de compuertas lógicas
-│   │   └── logicGatesTest.js  # Pruebas exhaustivas con visualización
-│   └── visualizeLogic/    # Utilidades de visualización centralizadas
-│       └── visualizer.js  # Funciones de salida de pruebas basadas en emojis
-└── [otros componentes conforme se desarrollen]
-```
+- **Compuertas Derivadas** - Compuertas avanzadas construidas a partir de compuertas lógicas básicas (NAND)
+  - Simulación de hardware e implementación de software usando combinaciones de compuertas existentes
 
 ## 🛠 Implementación Actual
 
@@ -80,6 +59,25 @@ const resultado5 = AND(2, "hola"); // Retorna 1 (🟡) - ambos truthy, normaliza
 const resultado6 = OR(0, null);    // Retorna 0 (⚫) - ambos falsy, normalizado a 0
 ```
 
+### Compuertas Derivadas
+Compuertas lógicas avanzadas construidas combinando compuertas básicas. Nuestra implementación incluye:
+
+- **Construcción Jerárquica**: Construidas usando las funciones existentes AND, OR, NOT, XOR
+- **Correspondencia de Hardware**: Cada compuerta derivada mapea a circuitos electrónicos reales
+- **Arquitectura Consistente**: Usa la misma base bit() a través de la composición de compuertas
+- **Implementación NAND**: NOT(AND(input1, input2)) - compuerta universal con capacidad lógica completa
+
+```javascript
+import { NAND } from "./derivedGates/derivedGates.js";
+
+// Operaciones NAND - construidas sobre compuertas existentes
+const resultado1 = NAND(0, 0); // Retorna 1 (🟡) - NOT(AND(0,0)) = NOT(0) = 1
+const resultado2 = NAND(1, 1); // Retorna 0 (⚫) - NOT(AND(1,1)) = NOT(1) = 0
+
+// Robustez mejorada heredada de la base
+const resultado3 = NAND("hola", 42); // Retorna 0 (⚫) - ambos truthy, AND=1, NOT(1)=0
+```
+
 ### Sistema de Visualización
 Nuestro framework de pruebas incluye un sistema de visualización centralizado para salida consistente:
 
@@ -109,15 +107,7 @@ Nuestro proyecto sigue una estructura de pruebas bien organizada que separa resp
 - **Mantenibilidad**: Cambios en lógica de visualización solo requieren actualizaciones en un lugar
 - **Consistencia**: Salida visual uniforme en todas las suites de pruebas
 
-### Organización de Pruebas
-```
-test/
-├── bit/                    # Pruebas específicas de componente
-├── logicGates/            # Pruebas de compuertas lógicas
-└── visualizeLogic/        # Utilidades de visualización compartidas
-```
-
-Esta arquitectura asegura que conforme el procesador crezca en complejidad, el framework de pruebas permanezca organizado y mantenible.
+El framework de pruebas está organizado para permanecer mantenible conforme el procesador crezca en complejidad.
 
 ## 🏗️ Arquitectura Jerárquica
 
@@ -128,7 +118,9 @@ Nuestro procesador sigue una arquitectura jerárquica bien diseñada donde cada 
 bit.js (Capa Fundamental)
   ↓ proporciona normalización
 logicGates.js (Capa Lógica)
-  ↓ proporcionará operaciones básicas
+  ↓ proporciona operaciones básicas
+derivedGates.js (Capa Derivada)
+  ↓ proporcionará operaciones avanzadas
 [Futuro: ALU] (Capa Aritmética)
   ↓ proporcionará cálculos
 [Futuro: CPU] (Capa de Control)
@@ -166,6 +158,9 @@ npm run test:bit
 
 # Probar compuertas lógicas
 npm run test:logicGates
+
+# Probar compuertas derivadas
+npm run test:derivedGates
 ```
 
 ## 🤝 Contribuir
