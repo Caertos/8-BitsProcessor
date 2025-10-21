@@ -118,17 +118,16 @@ hr {
   border: 1px solid #30363d;
   border-radius: 8px;
   text-align: center;
-  width: fit-content;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .embed-simulation iframe {
   width: 100%;
-  /* Mantener proporción visual aproximada: 906 / 625 ≈ 1.4496 */
-  aspect-ratio: 1.45 / 1;
-  max-width: 100%;
+  /* Altura fluida con clamp: mínimo 400px, ideal 60vw/1.45, máximo 700px */
+  height: clamp(400px, calc(60vw / 1.45), 700px);
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   border: none;
@@ -138,20 +137,19 @@ hr {
 @media (max-width: 768px) {
   .embed-simulation {
     width: 100%;
+    padding: 0.5rem;
   }
   
   .embed-simulation iframe {
-    width: 100%;
-    aspect-ratio: 1.45 / 1;
-    height: auto;
+    /* En tablets y móviles, ajustar el rango del clamp */
+    height: clamp(350px, calc(80vw / 1.45), 600px);
   }
 }
 
 @media (max-width: 480px) {
   .embed-simulation iframe {
-    width: 100%;
-    aspect-ratio: 1.45 / 1;
-    height: auto;
+    /* En móviles pequeños, rango más ajustado */
+    height: clamp(280px, calc(90vw / 1.45), 450px);
   }
 }
 
