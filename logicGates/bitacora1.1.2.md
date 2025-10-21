@@ -122,7 +122,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Configuración del circuito:**
@@ -144,7 +144,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Configuración del circuito:**
@@ -164,7 +164,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Configuración del circuito:**
@@ -193,7 +193,7 @@ A | B | A NAND B
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/eeLqetXWyqY-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/eeLqetXWyqY-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Configuración del circuito:**
@@ -578,7 +578,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Circuit configuration:**
@@ -600,7 +600,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Circuit configuration:**
@@ -620,7 +620,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Circuit configuration:**
@@ -649,7 +649,7 @@ A | B | A NAND B
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/6jdJRxdvJTv-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/6jdJRxdvJTv-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Circuit configuration:**

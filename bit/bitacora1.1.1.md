@@ -18,7 +18,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 ### Materiales Necesarios
@@ -178,7 +178,7 @@ La simulación en Tinkercad demuestra el funcionamiento físico real de un bit, 
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="906" height="625" src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 ### Required Materials
