@@ -118,26 +118,37 @@ hr {
   border: 1px solid #30363d;
   border-radius: 8px;
   text-align: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .embed-simulation iframe {
+  width: 725px;
+  height: 500px;
   max-width: 100%;
-  height: auto;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: none;
 }
 
 /* Responsivo para simulaciones */
 @media (max-width: 768px) {
+  .embed-simulation {
+    width: 100%;
+  }
+  
   .embed-simulation iframe {
     width: 100%;
-    height: 300px;
+    height: 400px;
   }
 }
 
 @media (max-width: 480px) {
   .embed-simulation iframe {
-    height: 250px;
+    width: 100%;
+    height: 300px;
   }
 }
 

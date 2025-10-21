@@ -100,7 +100,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="725" height="725" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Configuración del circuito:**
@@ -472,7 +472,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
-<iframe width="725" height="453" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
 **Circuit configuration:**
