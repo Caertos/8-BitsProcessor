@@ -58,6 +58,17 @@
   1 | 1 |    0
   ```
 
+#### 5. Compuerta NAND (NOT AND)
+- **Función:** Retorna 0 solo cuando ambas entradas son 1 (inverso de AND)
+- **Tabla de verdad:**
+  ```
+  A | B | A NAND B
+  0 | 0 |    1
+  0 | 1 |    1
+  1 | 0 |    1
+  1 | 1 |    0
+  ```
+
 ## Procedimiento 2: Simulación en Tinkercad
 
 ### Circuito AND - Compuerta Y
@@ -136,6 +147,35 @@
 - **Un switch ON:** LED encendido (1 XOR 0 = 1 ó 0 XOR 1 = 1)
 - **Ambos switches ON:** LED apagado (1 XOR 1 = 0)
 
+### Circuito NAND - Compuerta NO Y
+
+**🔗 Simulación Interactiva:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
+**Configuración del circuito:**
+- 2x Interruptores (Switch) como entradas A y B
+- 2x Transistores NPN configurados en serie
+- 2x Resistencias de 1kΩ (bases de transistores)
+- 1x Resistencia limitadora de corriente del LED
+- 1x LED como indicador de salida
+- Implementación usando: NAND = NOT(AND(A, B))
+
+**Tabla de verdad:**
+```
+A | B | A NAND B
+0 | 0 |    1
+0 | 1 |    1
+1 | 0 |    1
+1 | 1 |    0
+```
+
+**Funcionamiento:**
+- **Ambos switches OFF:** LED encendido (0 NAND 0 = 1)
+- **Un switch ON:** LED encendido (1 NAND 0 = 1 ó 0 NAND 1 = 1)
+- **Ambos switches ON:** LED apagado (1 NAND 1 = 0)
+
 ### Análisis de los Experimentos
 
 #### 1. Validación de Tablas de Verdad
@@ -143,6 +183,7 @@
 ✅ **OR:** Comportamiento verificado - Se activa con cualquier entrada en 1  
 ✅ **NOT:** Comportamiento verificado - Invierte la entrada correctamente  
 ✅ **XOR:** Comportamiento verificado - Se activa solo con entradas diferentes  
+✅ **NAND:** Comportamiento verificado - Se activa excepto cuando ambas entradas son 1  
 
 #### 2. Consideraciones de Hardware
 - **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
@@ -430,6 +471,17 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
   1 | 1 |    0
   ```
 
+#### 5. NAND Gate (NOT AND)
+- **Function:** Returns 0 only when both inputs are 1 (inverse of AND)
+- **Truth table:**
+  ```
+  A | B | A NAND B
+  0 | 0 |    1
+  0 | 1 |    1
+  1 | 0 |    1
+  1 | 1 |    0
+  ```
+
 ## Procedure 2: Tinkercad Simulation
 
 ### AND Circuit - AND Gate
@@ -508,6 +560,35 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 - **One switch ON:** LED on (1 XOR 0 = 1 or 0 XOR 1 = 1)
 - **Both switches ON:** LED off (1 XOR 1 = 0)
 
+### NAND Circuit - NOT AND Gate
+
+**🔗 Interactive Simulation:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/fRsfA3oBoWR-nand?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
+**Circuit configuration:**
+- 2x Switches as inputs A and B
+- 2x NPN Transistors configured in series
+- 2x 1kΩ Resistors (transistor bases)
+- 1x LED current limiting resistor
+- 1x LED as output indicator
+- Implementation using: NAND = NOT(AND(A, B))
+
+**Truth table:**
+```
+A | B | A NAND B
+0 | 0 |    1
+0 | 1 |    1
+1 | 0 |    1
+1 | 1 |    0
+```
+
+**Operation:**
+- **Both switches OFF:** LED on (0 NAND 0 = 1)
+- **One switch ON:** LED on (1 NAND 0 = 1 or 0 NAND 1 = 1)
+- **Both switches ON:** LED off (1 NAND 1 = 0)
+
 ### Experiment Analysis
 
 #### 1. Truth Table Validation
@@ -515,6 +596,7 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 ✅ **OR:** Behavior verified - Activates with any input at 1  
 ✅ **NOT:** Behavior verified - Correctly inverts input  
 ✅ **XOR:** Behavior verified - Only activates with different inputs  
+✅ **NAND:** Behavior verified - Activates except when both inputs are 1  
 
 #### 2. Hardware Considerations
 - **LED Current:** Calculated according to specific resistors in each circuit
