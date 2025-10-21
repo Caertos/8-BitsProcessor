@@ -98,6 +98,11 @@
 
 ![Circuito NOT en Tinkercad](./NOT.png)
 
+**🔗 Simulación Interactiva:**
+<div class="embed-simulation">
+<iframe width="725" height="453" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
 **Configuración del circuito:**
 - 1x Interruptor (Switch) como entrada A
 - 1x Transistor NPN configurado como inversor
@@ -464,6 +469,11 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 ### NOT Circuit - NOT Gate
 
 ![NOT Circuit in Tinkercad](./NOT.png)
+
+**🔗 Interactive Simulation:**
+<div class="embed-simulation">
+<iframe width="725" height="453" src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
 
 **Circuit configuration:**
 - 1x Switch as input A
