@@ -1,8 +1,20 @@
 title: "8-Bit Processor Simulation"
 description: "Un proyecto educativo paso a paso que implementa un procesador de 8 bits"
 
+# Theme and layout configuration
 theme: minima
 markdown: kramdown
+
+# Author information
+author:
+  name: "Carlos Cochero"
+
+# Default layout for all pages
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
 
 exclude:
   - "*.js"

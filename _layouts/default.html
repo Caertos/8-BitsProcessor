@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'es' }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+</head>
+
+<body>
+  
+  <!-- Navbar personalizado -->
+  {% include navbar.html %}
+  
+  <!-- Contenido principal -->
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      {{ content }}
+    </div>
+  </main>
+  
+  <!-- Footer simple -->
+  <footer class="site-footer">
+    <div class="wrapper">
+      <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name | default: "Carlos Cochero" }}. Proyecto bajo licencia MIT.</p>
+      <p>
+        <a href="https://github.com/Caertos/8-BitsProcessor">GitHub</a> | 
+        <a href="{{ '/CHANGELOG.html' | relative_url }}">Changelog</a> |
+        <a href="{{ '/CONTRIBUTING.html' | relative_url }}">Contribuir</a>
+      </p>
+    </div>
+  </footer>
+
+  <style>
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .page-content {
+      min-height: calc(100vh - 200px);
+    }
+    
+    .site-footer {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    
+    .site-footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</body>
+</html>
