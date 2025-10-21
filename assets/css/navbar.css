@@ -1,0 +1,71 @@
+/* Estilos para el navbar */
+.site-nav {
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #00d4aa;
+  margin-bottom: 1rem;
+  display: block;
+  text-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
+}
+
+.site-title:hover {
+  color: #00b894;
+  text-shadow: 0 0 15px rgba(0, 212, 170, 0.5);
+}
+
+.nav-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.nav-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #e6e6e6;
+  border-bottom: 2px solid #00d4aa;
+  padding-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.nav-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-section li {
+  margin-bottom: 0.25rem;
+}
+
+.nav-section a {
+  color: #74b9ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.nav-section a:hover {
+  color: #00d4aa;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .nav-sections {
+    grid-template-columns: 1fr;
+  }
+}

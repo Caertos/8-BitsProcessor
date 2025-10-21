@@ -1,0 +1,129 @@
+/* Estilos adicionales para tema oscuro */
+
+/* Badges y etiquetas de estado */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.badge-success {
+  color: #0d1117;
+  background-color: #28a745;
+}
+
+.badge-warning {
+  color: #0d1117;
+  background-color: #ffc107;
+}
+
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+
+/* Mejoras para contenido técnico */
+.code-block {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.highlight-box {
+  background-color: rgba(0, 212, 170, 0.1);
+  border-left: 4px solid #00d4aa;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Botones de acción */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: #00d4aa;
+  color: #0d1117;
+  border-color: #00d4aa;
+}
+
+.btn-primary:hover {
+  background-color: #00b894;
+  color: #0d1117;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 212, 170, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #74b9ff;
+  border-color: #74b9ff;
+}
+
+.btn-secondary:hover {
+  background-color: #74b9ff;
+  color: #0d1117;
+  text-decoration: none;
+}
+
+/* Separadores de sección */
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #30363d, transparent);
+  margin: 2rem 0;
+}
+
+/* Mejoras para las tablas de verdad */
+.truth-table {
+  margin: 1rem auto;
+  border-collapse: collapse;
+  background-color: #161b22;
+}
+
+.truth-table th {
+  background-color: #21262d;
+  color: #00d4aa;
+  font-weight: 600;
+  text-align: center;
+}
+
+.truth-table td {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+/* Iconos y emojis mejorados */
+.status-icon {
+  font-size: 1.2em;
+  margin-right: 0.5em;
+}
+
+.completed {
+  color: #28a745;
+}
+
+.in-progress {
+  color: #ffc107;
+}
+
+.planned {
+  color: #74b9ff;
+}

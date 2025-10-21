@@ -9,6 +9,8 @@
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
   
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/navbar.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 </head>
 
@@ -37,6 +39,13 @@
   </footer>
 
   <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+    }
+    
     .wrapper {
       max-width: 1200px;
       margin: 0 auto;
@@ -45,25 +54,147 @@
     
     .page-content {
       min-height: calc(100vh - 200px);
+      background-color: #0d1117;
+    }
+    
+    /* Estilo para el contenido markdown */
+    h1, h2, h3, h4, h5, h6 {
+      color: #f0f6fc;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 0.3rem;
+    }
+    
+    h1 {
+      color: #00d4aa;
+      font-size: 2rem;
+      text-shadow: 0 0 10px rgba(0, 212, 170, 0.2);
+    }
+    
+    h2 {
+      color: #74b9ff;
+      font-size: 1.5rem;
+    }
+    
+    /* Enlaces */
+    a {
+      color: #74b9ff;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #00d4aa;
+      text-decoration: underline;
+    }
+    
+    /* Código */
+    code {
+      background-color: #161b22;
+      color: #f85552;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    
+    pre {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    
+    pre code {
+      background-color: transparent;
+      color: #c9d1d9;
+      padding: 0;
+    }
+    
+    /* Tablas */
+    table {
+      border-collapse: collapse;
+      margin: 1rem 0;
+      width: 100%;
+    }
+    
+    th, td {
+      border: 1px solid #30363d;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #161b22;
+      color: #f0f6fc;
+      font-weight: 600;
+    }
+    
+    /* Blockquotes */
+    blockquote {
+      border-left: 4px solid #00d4aa;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      color: #8b949e;
+      font-style: italic;
+    }
+    
+    /* Imágenes */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Listas */
+    ul, ol {
+      color: #c9d1d9;
+    }
+    
+    li::marker {
+      color: #74b9ff;
+    }
+    
+    /* Emojis y símbolos especiales */
+    .emoji {
+      font-size: 1.2em;
     }
     
     .site-footer {
-      background-color: #f8f9fa;
-      border-top: 1px solid #dee2e6;
+      background-color: #161b22;
+      border-top: 1px solid #30363d;
       padding: 2rem 0;
       margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
-      color: #6c757d;
+      color: #8b949e;
     }
     
     .site-footer a {
-      color: #007bff;
+      color: #74b9ff;
       text-decoration: none;
     }
     
     .site-footer a:hover {
+      color: #00d4aa;
       text-decoration: underline;
+    }
+    
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #161b22;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #30363d;
+      border-radius: 6px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #484f58;
     }
   </style>
 
