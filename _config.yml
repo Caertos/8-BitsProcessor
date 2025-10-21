@@ -1,0 +1,11 @@
+title: "8-Bit Processor Simulation"
+description: "Un proyecto educativo paso a paso que implementa un procesador de 8 bits"
+
+theme: minima
+markdown: kramdown
+
+exclude:
+  - "*.js"
+  - "node_modules/"
+  - "package.json"
+  - "test/"
