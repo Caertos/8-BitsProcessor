@@ -16,6 +16,11 @@
 
 ![Circuito de Transistor Bit en Tinkercad](./transistorBit.png)
 
+**🔗 Simulación Interactiva:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
 ### Materiales Necesarios
 - 1x Transistor NPN (2N2222 o similar)
 - 2x Resistencias (220Ω y 1kΩ)
@@ -170,6 +175,11 @@ La simulación en Tinkercad demuestra el funcionamiento físico real de un bit, 
 ## Procedure 1: Tinkercad Simulation
 
 ![Transistor Bit Circuit in Tinkercad](./transistorBit.png)
+
+**🔗 Interactive Simulation:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
 
 ### Required Materials
 - 1x NPN Transistor (2N2222 or similar)

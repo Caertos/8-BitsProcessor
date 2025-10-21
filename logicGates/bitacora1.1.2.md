@@ -69,6 +69,17 @@
   1 | 1 |    0
   ```
 
+#### 6. Compuerta NOR (NOT OR)
+- **Función:** Retorna 1 solo cuando ambas entradas son 0 (inverso de OR)
+- **Tabla de verdad:**
+  ```
+  A | B | A NOR B
+  0 | 0 |   1
+  0 | 1 |   0
+  1 | 0 |   0
+  1 | 1 |   0
+  ```
+
 ## Procedimiento 2: Simulación en Tinkercad
 
 ### Circuito AND - Compuerta Y
@@ -128,11 +139,13 @@
 
 ### Circuito XOR - Compuerta O Exclusiva
 
-#### Estado OFF (Entradas iguales)
 ![Circuito XOR Estado OFF en Tinkercad](./XOR-OFF.png)
-
-#### Estado ON (Entradas diferentes)
 ![Circuito XOR Estado ON en Tinkercad](./XOR-ON.png)
+
+**🔗 Simulación Interactiva:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
 
 **Configuración del circuito:**
 - 2x Interruptores (Switch) como entradas A y B
@@ -176,6 +189,35 @@ A | B | A NAND B
 - **Un switch ON:** LED encendido (1 NAND 0 = 1 ó 0 NAND 1 = 1)
 - **Ambos switches ON:** LED apagado (1 NAND 1 = 0)
 
+### Circuito NOR - Compuerta NO O
+
+**🔗 Simulación Interactiva:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/eeLqetXWyqY-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
+**Configuración del circuito:**
+- 2x Interruptores (Switch) como entradas A y B
+- 2x Transistores NPN configurados en paralelo con lógica invertida
+- 2x Resistencias de 1kΩ (bases de transistores)
+- 1x Resistencia limitadora de corriente del LED
+- 1x LED como indicador de salida
+- Implementación usando: NOR = NOT(OR(A, B))
+
+**Tabla de verdad:**
+```
+A | B | A NOR B
+0 | 0 |   1
+0 | 1 |   0
+1 | 0 |   0
+1 | 1 |   0
+```
+
+**Funcionamiento:**
+- **Ambos switches OFF:** LED encendido (0 NOR 0 = 1)
+- **Un switch ON:** LED apagado (1 NOR 0 = 0 ó 0 NOR 1 = 0)
+- **Ambos switches ON:** LED apagado (1 NOR 1 = 0)
+
 ### Análisis de los Experimentos
 
 #### 1. Validación de Tablas de Verdad
@@ -184,6 +226,7 @@ A | B | A NAND B
 ✅ **NOT:** Comportamiento verificado - Invierte la entrada correctamente  
 ✅ **XOR:** Comportamiento verificado - Se activa solo con entradas diferentes  
 ✅ **NAND:** Comportamiento verificado - Se activa excepto cuando ambas entradas son 1  
+✅ **NOR:** Comportamiento verificado - Se activa solo cuando ambas entradas son 0  
 
 #### 2. Consideraciones de Hardware
 - **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
@@ -482,6 +525,17 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
   1 | 1 |    0
   ```
 
+#### 6. NOR Gate (NOT OR)
+- **Function:** Returns 1 only when both inputs are 0 (inverse of OR)
+- **Truth table:**
+  ```
+  A | B | A NOR B
+  0 | 0 |   1
+  0 | 1 |   0
+  1 | 0 |   0
+  1 | 1 |   0
+  ```
+
 ## Procedure 2: Tinkercad Simulation
 
 ### AND Circuit - AND Gate
@@ -541,11 +595,13 @@ Las compuertas están listas para ser utilizadas en componentes más complejos d
 
 ### XOR Circuit - Exclusive OR Gate
 
-#### OFF State (Equal inputs)
 ![XOR Circuit OFF State in Tinkercad](./XOR-OFF.png)
-
-#### ON State (Different inputs)
 ![XOR Circuit ON State in Tinkercad](./XOR-ON.png)
+
+**🔗 Interactive Simulation:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/bdJCsD2OHB7-xor-without-ic?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
 
 **Circuit configuration:**
 - 2x Switches as inputs A and B
@@ -589,6 +645,35 @@ A | B | A NAND B
 - **One switch ON:** LED on (1 NAND 0 = 1 or 0 NAND 1 = 1)
 - **Both switches ON:** LED off (1 NAND 1 = 0)
 
+### NOR Circuit - NOT OR Gate
+
+**🔗 Interactive Simulation:**
+<div class="embed-simulation">
+<iframe width="725" height="500" src="https://www.tinkercad.com/embed/eeLqetXWyqY-nor?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</div>
+
+**Circuit configuration:**
+- 2x Switches as inputs A and B
+- 2x NPN Transistors configured in parallel with inverted logic
+- 2x 1kΩ Resistors (transistor bases)
+- 1x LED current limiting resistor
+- 1x LED as output indicator
+- Implementation using: NOR = NOT(OR(A, B))
+
+**Truth table:**
+```
+A | B | A NOR B
+0 | 0 |   1
+0 | 1 |   0
+1 | 0 |   0
+1 | 1 |   0
+```
+
+**Operation:**
+- **Both switches OFF:** LED on (0 NOR 0 = 1)
+- **One switch ON:** LED off (1 NOR 0 = 0 or 0 NOR 1 = 0)
+- **Both switches ON:** LED off (1 NOR 1 = 0)
+
 ### Experiment Analysis
 
 #### 1. Truth Table Validation
@@ -597,6 +682,7 @@ A | B | A NAND B
 ✅ **NOT:** Behavior verified - Correctly inverts input  
 ✅ **XOR:** Behavior verified - Only activates with different inputs  
 ✅ **NAND:** Behavior verified - Activates except when both inputs are 1  
+✅ **NOR:** Behavior verified - Only activates when both inputs are 0  
 
 #### 2. Hardware Considerations
 - **LED Current:** Calculated according to specific resistors in each circuit
