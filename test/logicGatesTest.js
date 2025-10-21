@@ -1,36 +1,26 @@
 import logicGates from "../logicGates/logicGates.js";
 import { 
     displayTestSection, 
-    bitToEmoji 
+    printTestsLogs,
+    printNOTTestLog
 } from "./visualizeLogic/visualizer.js";
 
 const { AND, OR, NOT, XOR } = logicGates;
 
 function displayANDTest(input1, input2, result) {
-    const input1Emoji = bitToEmoji(input1);
-    const input2Emoji = bitToEmoji(input2);
-    const resultEmoji = bitToEmoji(result);
-    console.log("The result of AND between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
+    printTestsLogs(AND.name, input1, input2, result);
 }
 
 function displayORTest(input1, input2, result) {
-    const input1Emoji = bitToEmoji(input1);
-    const input2Emoji = bitToEmoji(input2);
-    const resultEmoji = bitToEmoji(result);
-    console.log("The result of OR between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
+    printTestsLogs(OR.name, input1, input2, result);
 }
 
 function displayNOTTest(input, result) {
-    const inputEmoji = bitToEmoji(input);
-    const resultEmoji = bitToEmoji(result);
-    console.log("The result of NOT logic", inputEmoji, "is:", resultEmoji);
+    printNOTTestLog(NOT.name, input, result);
 }
 
 function displayXORTest(input1, input2, result) {
-    const input1Emoji = bitToEmoji(input1);
-    const input2Emoji = bitToEmoji(input2);
-    const resultEmoji = bitToEmoji(result);
-    console.log("The result of XOR between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
+    printTestsLogs(XOR.name, input1, input2, result);
 }
 
 function testAND(input1, input2) {
@@ -57,28 +47,24 @@ function testXOR(input1, input2) {
   return result;
 }
 
-// Tests: AND
 displayTestSection("Tests: AND");
-testAND(1, 0);
-testAND(1, 1);
 testAND(0, 0);
 testAND(0, 1);
+testAND(1, 0);
+testAND(1, 1);
 
-// Tests: OR
 displayTestSection("Tests: OR");
-testOR(1, 0);
-testOR(1, 1);
 testOR(0, 0);
 testOR(0, 1);
+testOR(1, 0);
+testOR(1, 1);
 
-// Tests: NOT
 displayTestSection("Tests: NOT");
 testNOT(AND(1, 0));
 testNOT(AND(1, 1));
 
-// Tests: XOR
 displayTestSection("Tests: XOR");
-testXOR(1, 0);
-testXOR(1, 1);
 testXOR(0, 0);
 testXOR(0, 1);
+testXOR(1, 0);
+testXOR(1, 1);

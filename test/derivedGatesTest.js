@@ -1,16 +1,21 @@
 import derivedGates from "../derivedGates/derivedGates.js";
 import { 
     displayTestSection, 
-    bitToEmoji 
+    printTestsLogs
 } from "./visualizeLogic/visualizer.js";
 
-const { NAND } = derivedGates;
+const { NAND, NOR, XNOR } = derivedGates;
 
 function displayNANDTest(input1, input2, result) {
-    const input1Emoji = bitToEmoji(input1);
-    const input2Emoji = bitToEmoji(input2);
-    const resultEmoji = bitToEmoji(result);
-    console.log("The result of NAND between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
+    printTestsLogs(NAND.name, input1, input2, result);
+}
+
+function displayNORTest(input1, input2, result) {
+    printTestsLogs(NOR.name, input1, input2, result);
+}
+
+function displayXNORTest(input1, input2, result) {
+    printTestsLogs(XNOR.name, input1, input2, result);
 }
 
 export function testNAND(input1, input2) {
@@ -19,9 +24,32 @@ export function testNAND(input1, input2) {
     return result;
 }
 
-// Tests: NAND
+export function testNOR(input1, input2) {
+    const result = NOR(input1, input2);
+    displayNORTest(input1, input2, result);
+    return result;
+}
+
+export function testXNOR(input1, input2) {
+    const result = XNOR(input1, input2);
+    displayXNORTest(input1, input2, result);
+    return result;
+}
+
 displayTestSection("Tests: NAND");
 testNAND(0, 0);
 testNAND(0, 1);
 testNAND(1, 0);
 testNAND(1, 1);
+
+displayTestSection("Tests: NOR");
+testNOR(0, 0);
+testNOR(0, 1);
+testNOR(1, 0);
+testNOR(1, 1);
+
+displayTestSection("Tests: XNOR");
+testXNOR(0, 0);
+testXNOR(0, 1);
+testXNOR(1, 0);
+testXNOR(1, 1);
