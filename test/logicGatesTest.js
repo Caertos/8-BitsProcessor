@@ -5,7 +5,7 @@ import {
     printNOTTestLog
 } from "./visualizeLogic/visualizer.js";
 
-const { AND, OR, NOT, XOR } = logicGates;
+const { AND, OR, NOT } = logicGates;
 
 function displayANDTest(input1, input2, result) {
     printTestsLogs(AND.name, input1, input2, result);
@@ -17,10 +17,6 @@ function displayORTest(input1, input2, result) {
 
 function displayNOTTest(input, result) {
     printNOTTestLog(NOT.name, input, result);
-}
-
-function displayXORTest(input1, input2, result) {
-    printTestsLogs(XOR.name, input1, input2, result);
 }
 
 function testAND(input1, input2) {
@@ -41,12 +37,6 @@ function testNOT(input) {
   return result;
 }
 
-function testXOR(input1, input2) {
-  const result = XOR(input1, input2);
-  displayXORTest(input1, input2, result);
-  return result;
-}
-
 displayTestSection("Tests: AND");
 testAND(0, 0);
 testAND(0, 1);
@@ -62,9 +52,3 @@ testOR(1, 1);
 displayTestSection("Tests: NOT");
 testNOT(AND(1, 0));
 testNOT(AND(1, 1));
-
-displayTestSection("Tests: XOR");
-testXOR(0, 0);
-testXOR(0, 1);
-testXOR(1, 0);
-testXOR(1, 1);

@@ -13,10 +13,11 @@ Este proyecto documenta el viaje de construir una comprensión completa de los p
 ### ✅ Componentes Completados
 - **Implementación de Bit** - Simulación básica de transistor con abstracción en JavaScript
   - 📋 [Bitácora de Desarrollo (Bilingüe)](./bit/bitacora1.1.1.md)
-- **Compuertas Lógicas** - Implementación completa de AND, OR, NOT, XOR con simulaciones de hardware
+- **Compuertas Lógicas Básicas** - Implementación completa de AND, OR, NOT con simulaciones interactivas
   - 📋 [Bitácora de Desarrollo (Bilingüe)](./logicGates/bitacora1.1.2.md)
-- **Compuertas Derivadas** - Compuertas avanzadas construidas a partir de compuertas lógicas básicas (NAND)
-  - Simulación de hardware e implementación de software usando combinaciones de compuertas existentes
+- **Compuertas Derivadas** - Compuertas avanzadas: XOR, NAND, NOR, XNOR construidas a partir de compuertas básicas
+  - 📋 [Bitácora de Desarrollo (Bilingüe)](./derivedGates/bitacora1.1.3.md)
+  - Simulaciones interactivas de hardware e implementación de software usando combinaciones de compuertas
 
 ## 🛠 Implementación Actual
 
@@ -35,10 +36,10 @@ const resultado = bit(1); // Retorna 1 (ENCENDIDO)
 const resultado2 = bit(0); // Retorna 0 (APAGADO)
 ```
 
-### Compuertas Lógicas
+### Compuertas Lógicas Básicas
 Los bloques de construcción fundamentales para operaciones lógicas. Implementación completa incluye:
 
-- **Simulaciones de Hardware**: Circuitos reales en Tinkercad para AND, OR, NOT, XOR
+- **Simulaciones Interactivas**: Circuitos embebidos de Tinkercad para AND, OR, NOT
 - **Implementación Modular**: Funciones JavaScript exportables individualmente construidas sobre la base de `bit.js`
 - **Arquitectura Jerárquica**: Todas las compuertas usan la función `bit()` para normalización consistente de entradas/salidas
 - **Robustez Mejorada**: Pueden manejar cualquier tipo de entrada (números, strings, objetos, null) mediante integración con `bit()`
@@ -46,36 +47,38 @@ Los bloques de construcción fundamentales para operaciones lógicas. Implementa
 - **Análisis Técnico**: Correspondencia hardware-software documentada
 
 ```javascript
-import { AND, OR, NOT, XOR } from "./logicGates/logicGates.js";
+import { AND, OR, NOT } from "./logicGates/logicGates.js";
 
-// Operaciones básicas - ahora construidas sobre la base de bit()
+// Operaciones básicas - construidas sobre la base de bit()
 const resultado1 = AND(1, 1); // Retorna 1 (🟡) - normalizado via bit()
 const resultado2 = OR(0, 1);  // Retorna 1 (🟡) - normalizado via bit()
 const resultado3 = NOT(1);    // Retorna 0 (⚫) - normalizado via bit()
-const resultado4 = XOR(1, 0); // Retorna 1 (🟡) - normalizado via bit()
 
 // Robustez mejorada - maneja cualquier tipo de entrada
-const resultado5 = AND(2, "hola"); // Retorna 1 (🟡) - ambos truthy, normalizado a 1
-const resultado6 = OR(0, null);    // Retorna 0 (⚫) - ambos falsy, normalizado a 0
+const resultado4 = AND(2, "hola"); // Retorna 1 (🟡) - ambos truthy, normalizado a 1
+const resultado5 = OR(0, null);    // Retorna 0 (⚫) - ambos falsy, normalizado a 0
 ```
 
 ### Compuertas Derivadas
 Compuertas lógicas avanzadas construidas combinando compuertas básicas. Nuestra implementación incluye:
 
-- **Construcción Jerárquica**: Construidas usando las funciones existentes AND, OR, NOT, XOR
+- **Construcción Jerárquica**: Construidas usando las funciones existentes AND, OR, NOT
+- **Simulaciones Interactivas**: Circuitos embebidos de Tinkercad para XOR, NAND, NOR
 - **Correspondencia de Hardware**: Cada compuerta derivada mapea a circuitos electrónicos reales
 - **Arquitectura Consistente**: Usa la misma base bit() a través de la composición de compuertas
-- **Implementación NAND**: NOT(AND(input1, input2)) - compuerta universal con capacidad lógica completa
+- **Compuertas Universales**: NAND y NOR pueden construir cualquier otra compuerta lógica
 
 ```javascript
-import { NAND } from "./derivedGates/derivedGates.js";
+import { XOR, NAND, NOR, XNOR } from "./derivedGates/derivedGates.js";
 
-// Operaciones NAND - construidas sobre compuertas existentes
-const resultado1 = NAND(0, 0); // Retorna 1 (🟡) - NOT(AND(0,0)) = NOT(0) = 1
-const resultado2 = NAND(1, 1); // Retorna 0 (⚫) - NOT(AND(1,1)) = NOT(1) = 0
+// Operaciones con compuertas derivadas
+const resultado1 = XOR(1, 0);  // Retorna 1 (🟡) - entradas diferentes
+const resultado2 = NAND(1, 1); // Retorna 0 (⚫) - NOT(AND(1,1))
+const resultado3 = NOR(0, 0);  // Retorna 1 (🟡) - NOT(OR(0,0))
+const resultado4 = XNOR(1, 1); // Retorna 1 (🟡) - entradas iguales
 
-// Robustez mejorada heredada de la base
-const resultado3 = NAND("hola", 42); // Retorna 0 (⚫) - ambos truthy, AND=1, NOT(1)=0
+// Robustez heredada de la base
+const resultado5 = NAND("hola", 42); // Retorna 0 (⚫) - ambos truthy, AND=1, NOT(1)=0
 ```
 
 ### Sistema de Visualización

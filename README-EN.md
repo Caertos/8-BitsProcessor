@@ -13,10 +13,11 @@ This project documents the journey of building a complete understanding of digit
 ### ✅ Completed Components
 - **Bit Implementation** - Basic transistor simulation with JavaScript abstraction
   - 📋 [Development Log (Bilingual)](./bit/bitacora1.1.1.md)
-- **Logic Gates** - Complete implementation of AND, OR, NOT, XOR with hardware simulations
+- **Basic Logic Gates** - Complete implementation of AND, OR, NOT with interactive simulations
   - 📋 [Development Log (Bilingual)](./logicGates/bitacora1.1.2.md)
-- **Derivative Gates** - Advanced gates built from basic logic gates (NAND)
-  - Hardware simulation and software implementation using existing gate combinations
+- **Derived Gates** - Advanced gates: XOR, NAND, NOR, XNOR built from basic gates
+  - 📋 [Development Log (Bilingual)](./derivedGates/bitacora1.1.3.md)
+  - Interactive hardware simulations and software implementation using gate combinations
 
 ## 🛠 Current Implementation
 
@@ -35,10 +36,10 @@ const result = bit(1); // Returns 1 (ON)
 const result2 = bit(0); // Returns 0 (OFF)
 ```
 
-### Logic Gates
+### Basic Logic Gates
 The fundamental building blocks for logical operations. Complete implementation includes:
 
-- **Hardware Simulations**: Real circuits in Tinkercad for AND, OR, NOT, XOR
+- **Interactive Simulations**: Embedded Tinkercad circuits for AND, OR, NOT
 - **Modular Implementation**: Individually exportable JavaScript functions built on `bit.js` foundation
 - **Hierarchical Architecture**: All gates use `bit()` function for consistent input/output normalization
 - **Enhanced Robustness**: Can handle any input type (numbers, strings, objects, null) via `bit()` integration
@@ -46,36 +47,38 @@ The fundamental building blocks for logical operations. Complete implementation 
 - **Technical Analysis**: Documented hardware-software correspondence
 
 ```javascript
-import { AND, OR, NOT, XOR } from "./logicGates/logicGates.js";
+import { AND, OR, NOT } from "./logicGates/logicGates.js";
 
-// Basic operations - now built on bit() foundation
+// Basic operations - built on bit() foundation
 const result1 = AND(1, 1); // Returns 1 (🟡) - normalized via bit()
 const result2 = OR(0, 1);  // Returns 1 (🟡) - normalized via bit()
 const result3 = NOT(1);    // Returns 0 (⚫) - normalized via bit()
-const result4 = XOR(1, 0); // Returns 1 (🟡) - normalized via bit()
 
 // Enhanced robustness - handles any input type
-const result5 = AND(2, "hello"); // Returns 1 (🟡) - both truthy, normalized to 1
-const result6 = OR(0, null);     // Returns 0 (⚫) - both falsy, normalized to 0
+const result4 = AND(2, "hello"); // Returns 1 (🟡) - both truthy, normalized to 1
+const result5 = OR(0, null);     // Returns 0 (⚫) - both falsy, normalized to 0
 ```
 
-### Derivative Gates
+### Derived Gates
 Advanced logic gates built by combining basic gates. Our implementation includes:
 
-- **Hierarchical Construction**: Built using existing AND, OR, NOT, XOR functions
-- **Hardware Correspondence**: Each derivative gate maps to real electronic circuits
+- **Hierarchical Construction**: Built using existing AND, OR, NOT functions
+- **Interactive Simulations**: Embedded Tinkercad circuits for XOR, NAND, NOR
+- **Hardware Correspondence**: Each derived gate maps to real electronic circuits
 - **Consistent Architecture**: Uses the same bit() foundation through gate composition
-- **NAND Implementation**: NOT(AND(input1, input2)) - universal gate with complete logic capability
+- **Universal Gates**: NAND and NOR can build any other logic gate
 
 ```javascript
-import { NAND } from "./derivedGates/derivedGates.js";
+import { XOR, NAND, NOR, XNOR } from "./derivedGates/derivedGates.js";
 
-// NAND operations - built on existing gates
-const result1 = NAND(0, 0); // Returns 1 (🟡) - NOT(AND(0,0)) = NOT(0) = 1
-const result2 = NAND(1, 1); // Returns 0 (⚫) - NOT(AND(1,1)) = NOT(1) = 0
+// Derived gate operations
+const result1 = XOR(1, 0);  // Returns 1 (🟡) - different inputs
+const result2 = NAND(1, 1); // Returns 0 (⚫) - NOT(AND(1,1))
+const result3 = NOR(0, 0);  // Returns 1 (🟡) - NOT(OR(0,0))
+const result4 = XNOR(1, 1); // Returns 1 (🟡) - equal inputs
 
-// Enhanced robustness inherited from foundation
-const result3 = NAND("hello", 42); // Returns 0 (⚫) - both truthy, AND=1, NOT(1)=0
+// Robustness inherited from foundation
+const result5 = NAND("hello", 42); // Returns 0 (⚫) - both truthy, AND=1, NOT(1)=0
 ```
 
 ### Visualization System

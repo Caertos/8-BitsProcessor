@@ -50,10 +50,18 @@ This project is designed to teach digital computer architecture by building a pr
 ```
 component/
 ├── component.js          # Core implementation
-├── test-component.js     # Isolated testing
-├── bitacora-X.X.X.md    # Development log (Spanish)
-└── README.md            # Component documentation (English)
+├── bitacora-X.X.X.md    # Development log (bilingual: Spanish/English)
+test/
+├── componentTest.js      # Component testing
+└── visualizeLogic/
+    └── visualizer.js     # Test output formatting
 ```
+
+**Current Structure:**
+- `bit/`: Fundamental bit implementation
+- `logicGates/`: Basic logic gates (AND, OR, NOT)
+- `derivedGates/`: Derived gates (XOR, NAND, NOR, XNOR)
+- `test/`: All test files with shared visualizer
 
 ## 🚀 Getting Started
 

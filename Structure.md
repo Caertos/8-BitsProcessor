@@ -37,22 +37,19 @@ derivedGates.js (Advanced Logic Layer)
 │
 ├── 🔧 Core Components
 │   ├── bit/                     # Foundation Layer
-│   │   ├── bit.js              # Digital state normalization logic
-│   │   ├── bitacora1.1.1.md    # Development log (bilingual)
-│   │   └── transistorBit.png    # Hardware simulation diagram
+│   │   ├── bit.js               # Bit implementation
+│   │   ├── bitacora1.1.1-es.md # Development log (Spanish)
+│   │   └── bitacora1.1.1-en.md # Development log (English)
 │   │
 │   ├── logicGates/              # Basic Logic Layer
-│   │   ├── logicGates.js       # AND, OR, NOT, XOR implementations
-│   │   ├── bitacora1.1.2.md    # Development log (bilingual)
-│   │   ├── AND.png             # AND gate circuit simulation
-│   │   ├── OR.png              # OR gate circuit simulation
-│   │   ├── NOT.png             # NOT gate circuit simulation
-│   │   ├── XOR-OFF.png         # XOR gate OFF state simulation
-│   │   └── XOR-ON.png          # XOR gate ON state simulation
+│   │   ├── logicGates.js       # AND, OR, NOT implementations
+│   │   ├── bitacora1.1.2-es.md # Development log - Basic gates (Spanish)
+│   │   └── bitacora1.1.2-en.md # Development log - Basic gates (English)
 │   │
 │   └── derivedGates/           # Advanced Logic Layer
-│       ├── derivedGates.js    # NAND and other derivative gates
-│       └── NAND.png            # NAND gate circuit simulation
+│       ├── derivedGates.js    # XOR, NAND, NOR, XNOR implementations
+│       ├── bitacora1.1.3-es.md # Development log - Derived gates (Spanish)
+│       └── bitacora1.1.3-en.md # Development log - Derived gates (English)
 │
 └── 🧪 Testing Framework
     ├── test/
@@ -85,8 +82,8 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 
 ### Functional Hierarchy
 - **bit.js**: Provides `bit()` function for consistent digital state normalization
-- **logicGates.js**: Uses `bit()` for all input/output normalization in AND, OR, NOT, XOR
-- **derivedGates.js**: Uses existing logic gates to create NAND and other complex gates
+- **logicGates.js**: Uses `bit()` for all input/output normalization in AND, OR, NOT
+- **derivedGates.js**: Uses existing logic gates to create XOR, NAND, NOR, XNOR (complex gates)
 - **visualizer.js**: Provides consistent emoji-based visualization across all tests
 
 ## 📊 File Types and Purposes
@@ -96,12 +93,15 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 - Each component uses the foundation layer for consistency
 
 ### Documentation Files
-- `*.md` - Markdown documentation (English/Spanish)
-- `bitacora*.md` - Bilingual development logs with technical details
+- `*.md` - Markdown documentation (English)
+- `*-ES.md` - Spanish documentation files
+- `*-EN.md` - English documentation files
+- `bitacora*-es.md` - Spanish development logs with technical details and interactive Tinkercad simulations
+- `bitacora*-en.md` - English development logs with technical details and interactive Tinkercad simulations
 
 ### Hardware Simulation Files  
-- `*.png` - Tinkercad circuit simulations showing real hardware implementations
-- Each software component corresponds to actual electronic circuits
+- Interactive Tinkercad simulations embedded in documentation provide real-time hardware visualization
+- All circuit diagrams are now interactive iframes with responsive sizing
 
 ### Test Files
 - `*Test.js` - Automated test suites with emoji-based visualization
@@ -131,7 +131,8 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 
 ### 5. Bilingual Documentation
 - Complete documentation in both English and Spanish
-- Development logs maintain bilingual format
+- Development logs separated by language for better organization
+- Language selector pages for easy navigation between versions
 - Accessible to broader educational audience
 
 ## 🚀 Future Expansion
@@ -156,17 +157,17 @@ The current structure is designed to accommodate future processor components:
 ### When Adding New Components
 1. Create new directory following naming convention
 2. Implement `.js` file using existing foundation layers
-3. Add hardware simulation `.png` files
-4. Create corresponding test file
-5. Update `package.json` scripts
-6. Add bilingual development log
+3. Create interactive Tinkercad simulation
+4. Create corresponding test file in `test/` directory
+5. Update `package.json` scripts if needed
+6. Add bilingual development log (bitacora)
 7. Update this Structure.md file
 
 ### Dependencies to Maintain
 - All logic components must use `bit.js` foundation
 - All tests must use `visualizer.js` for output
 - All hardware implementations should have Tinkercad simulations
-- All documentation should maintain bilingual support
+- All documentation should maintain bilingual support with separate language files
 
 ---
 

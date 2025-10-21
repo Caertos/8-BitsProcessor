@@ -4,7 +4,11 @@ import {
     printTestsLogs
 } from "./visualizeLogic/visualizer.js";
 
-const { NAND, NOR, XNOR } = derivedGates;
+const { XOR, NAND, NOR, XNOR } = derivedGates;
+
+function displayXORTest(input1, input2, result) {
+    printTestsLogs(XOR.name, input1, input2, result);
+}
 
 function displayNANDTest(input1, input2, result) {
     printTestsLogs(NAND.name, input1, input2, result);
@@ -16,6 +20,12 @@ function displayNORTest(input1, input2, result) {
 
 function displayXNORTest(input1, input2, result) {
     printTestsLogs(XNOR.name, input1, input2, result);
+}
+
+export function testXOR(input1, input2) {
+    const result = XOR(input1, input2);
+    displayXORTest(input1, input2, result);
+    return result;
 }
 
 export function testNAND(input1, input2) {
@@ -35,6 +45,12 @@ export function testXNOR(input1, input2) {
     displayXNORTest(input1, input2, result);
     return result;
 }
+
+displayTestSection("Tests: XOR");
+testXOR(0, 0);
+testXOR(0, 1);
+testXOR(1, 0);
+testXOR(1, 1);
 
 displayTestSection("Tests: NAND");
 testNAND(0, 0);

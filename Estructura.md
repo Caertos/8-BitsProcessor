@@ -38,22 +38,19 @@ derivedGates.js (Capa Lógica Avanzada)
 │
 ├── 🔧 Componentes Principales
 │   ├── bit/                     # Capa Fundamental
-│   │   ├── bit.js              # Lógica de normalización de estados digitales
-│   │   ├── bitacora1.1.1.md    # Bitácora de desarrollo (bilingüe)
-│   │   └── transistorBit.png    # Diagrama de simulación de hardware
+│   │   ├── bit.js               # Implementación de bit
+│   │   ├── bitacora1.1.1-es.md # Bitácora de desarrollo (Español)
+│   │   └── bitacora1.1.1-en.md # Bitácora de desarrollo (Inglés)
 │   │
-│   ├── logicGates/              # Capa Lógica Básica
-│   │   ├── logicGates.js       # Implementaciones de AND, OR, NOT, XOR
-│   │   ├── bitacora1.1.2.md    # Bitácora de desarrollo (bilingüe)
-│   │   ├── AND.png             # Simulación de circuito compuerta AND
-│   │   ├── OR.png              # Simulación de circuito compuerta OR
-│   │   ├── NOT.png             # Simulación de circuito compuerta NOT
-│   │   ├── XOR-OFF.png         # Simulación compuerta XOR estado OFF
-│   │   └── XOR-ON.png          # Simulación compuerta XOR estado ON
+│   ├── logicGates/              # Capa de Lógica Básica
+│   │   ├── logicGates.js       # Implementaciones de AND, OR, NOT
+│   │   ├── bitacora1.1.2-es.md # Bitácora de desarrollo - Compuertas básicas (Español)
+│   │   └── bitacora1.1.2-en.md # Bitácora de desarrollo - Compuertas básicas (Inglés)
 │   │
-│   └── derivedGates/           # Capa Lógica Avanzada
-│       ├── derivedGates.js    # NAND y otras compuertas derivadas
-│       └── NAND.png            # Simulación de circuito compuerta NAND
+│   └── derivedGates/           # Capa de Lógica Avanzada
+│       ├── derivedGates.js    # Implementaciones de XOR, NAND, NOR, XNOR
+│       ├── bitacora1.1.3-es.md # Bitácora de desarrollo - Compuertas derivadas (Español)
+│       └── bitacora1.1.3-en.md # Bitácora de desarrollo - Compuertas derivadas (Inglés)
 │
 └── 🧪 Framework de Pruebas
     ├── test/
@@ -86,8 +83,8 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 
 ### Jerarquía Funcional
 - **bit.js**: Proporciona la función `bit()` para normalización consistente de estados digitales
-- **logicGates.js**: Usa `bit()` para toda la normalización de entrada/salida en AND, OR, NOT, XOR
-- **derivedGates.js**: Usa compuertas lógicas existentes para crear NAND y otras compuertas complejas
+- **logicGates.js**: Usa `bit()` para toda la normalización de entrada/salida en AND, OR, NOT
+- **derivedGates.js**: Usa compuertas lógicas existentes para crear XOR, NAND, NOR, XNOR (compuertas complejas)
 - **visualizer.js**: Proporciona visualización consistente basada en emojis en todas las pruebas
 
 ## 📊 Tipos de Archivos y Propósitos
@@ -97,12 +94,16 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 - Cada componente usa la capa fundamental para consistencia
 
 ### Archivos de Documentación
-- `*.md` - Documentación Markdown (inglés/español)
-- `bitacora*.md` - Bitácoras de desarrollo bilingües con detalles técnicos
+### Archivos de Documentación
+- `*.md` - Documentación en Markdown (Español)
+- `*-ES.md` - Archivos de documentación en español
+- `*-EN.md` - Archivos de documentación en inglés
+- `bitacora*-es.md` - Bitácoras de desarrollo en español con detalles técnicos y simulaciones interactivas de Tinkercad
+- `bitacora*-en.md` - Bitácoras de desarrollo en inglés con detalles técnicos y simulaciones interactivas de Tinkercad
 
-### Archivos de Simulación de Hardware
-- `*.png` - Simulaciones de circuitos en Tinkercad mostrando implementaciones de hardware reales
-- Cada componente de software corresponde a circuitos electrónicos reales
+### Archivos de Simulación de Hardware  
+- Las simulaciones interactivas de Tinkercad integradas en la documentación proporcionan visualización de hardware en tiempo real
+- Todos los diagramas de circuitos ahora son iframes interactivos con dimensionamiento responsivo
 
 ### Archivos de Pruebas
 - `*Test.js` - Suites de pruebas automatizadas con visualización basada en emojis
@@ -132,7 +133,8 @@ transistorTest.js, logicGatesTest.js, derivedGatesTest.js
 
 ### 5. Documentación Bilingüe
 - Documentación completa en inglés y español
-- Las bitácoras de desarrollo mantienen formato bilingüe
+- Las bitácoras de desarrollo están separadas por idioma para mejor organización
+- Páginas selectoras de idioma para navegación fácil entre versiones
 - Accesible a una audiencia educativa más amplia
 
 ## 🚀 Expansión Futura
@@ -155,11 +157,11 @@ La estructura actual está diseñada para acomodar futuros componentes del proce
 ## 📝 Notas de Mantenimiento
 
 ### Al Agregar Nuevos Componentes
-1. Crear nuevo directorio siguiendo convención de nomenclatura
-2. Implementar archivo `.js` usando capas fundamentales existentes
-3. Agregar archivos de simulación de hardware `.png`
-4. Crear archivo de prueba correspondiente
-5. Actualizar scripts de `package.json`
+1. Crear nuevo directorio siguiendo la convención de nombres
+2. Implementar archivo `.js` usando las capas fundamentales existentes
+3. Crear simulación interactiva en Tinkercad
+4. Crear archivo de prueba correspondiente en directorio `test/`
+5. Actualizar scripts de `package.json` si es necesario
 6. Agregar bitácora de desarrollo bilingüe
 7. Actualizar este archivo Estructura.md
 
@@ -167,7 +169,7 @@ La estructura actual está diseñada para acomodar futuros componentes del proce
 - Todos los componentes lógicos deben usar la base `bit.js`
 - Todas las pruebas deben usar `visualizer.js` para salida
 - Todas las implementaciones de hardware deberían tener simulaciones de Tinkercad
-- Toda la documentación debería mantener soporte bilingüe
+- Toda la documentación debería mantener soporte bilingüe con archivos de idioma separados
 
 ---
 
