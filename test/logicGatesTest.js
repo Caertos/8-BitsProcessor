@@ -52,3 +52,4 @@ testOR(1, 1);
 displayTestSection("Tests: NOT");
 testNOT(AND(1, 0));
 testNOT(AND(1, 1));
+

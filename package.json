@@ -5,7 +5,7 @@
   "description": "A step-by-step implementation of an 8-bit processor, from basic transistors to a complete CPU simulation",
   "main": "index.js",
   "scripts": {
-    "test": "",
+    "test": "node ./test/test.js",
     "test:bit": "node ./test/transistorTest.js",
     "test:logicGates": "node ./test/logicGatesTest.js",
     "test:derivedGates": "node ./test/derivedGatesTest.js"
