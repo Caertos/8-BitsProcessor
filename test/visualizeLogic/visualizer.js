@@ -30,5 +30,5 @@ export function displayTestSection(title) {
 }
 
 export function displayTransistorHeader() {
-    console.log("El transistor envía señales alternadas al bit:\n");
+    console.log("The transistor sends alternating signals to the bit:\n");
 }
