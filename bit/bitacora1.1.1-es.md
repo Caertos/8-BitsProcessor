@@ -9,9 +9,7 @@
 ## Procedimiento 1: Simulación en Tinkercad
 
 **🔗 Simulación Interactiva:**
-<div class="embed-simulation">
-<iframe src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-</div>
+{% include embed-tinkercad.html id="57Rf0VVflk2-bit" width="725" height="453" %}
 
 ### Materiales Necesarios
 - 1x Transistor NPN (2N2222 o similar)
