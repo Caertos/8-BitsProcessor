@@ -10,7 +10,7 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe src="https://www.tinkercad.com/embed/57Rf0VVflk2-bit?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<iframe width="725" height="453" src="https://www.tinkercad.com/embed/57Rf0VVflk2" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 </div>
 
 ### Materiales Necesarios
