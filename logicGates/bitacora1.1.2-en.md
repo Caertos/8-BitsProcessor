@@ -6,6 +6,8 @@
 
 ---
 
+## 🇺🇸 ENGLISH
+
 ## Procedure 1: Logic Gates Theoretical Foundations
 
 ### Implemented Gates
@@ -41,38 +43,7 @@
   1 |   0
   ```
 
-#### 4. XOR Gate (Exclusive OR)
-- **Function:** Returns 1 when inputs are different
-- **Truth table:**
-  ```
-  A | B | A XOR B
-  0 | 0 |    0
-  0 | 1 |    1
-  1 | 0 |    1
-  1 | 1 |    0
-  ```
-
-#### 5. NAND Gate (NOT AND)
-- **Function:** Returns 0 only when both inputs are 1 (inverse of AND)
-- **Truth table:**
-  ```
-  A | B | A NAND B
-  0 | 0 |    1
-  0 | 1 |    1
-  1 | 0 |    1
-  1 | 1 |    0
-  ```
-
-#### 6. NOR Gate (NOT OR)
-- **Function:** Returns 1 only when both inputs are 0 (inverse of OR)
-- **Truth table:**
-  ```
-  A | B | A NOR B
-  0 | 0 |   1
-  0 | 1 |   0
-  1 | 0 |   0
-  1 | 1 |   0
-  ```
+**Note:** For derived gates (NAND, NOR, XNOR), see [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
 
 ## Procedure 2: Tinkercad Simulation
 
@@ -140,138 +111,75 @@
 #### 1. Truth Table Validation
 ✅ **AND:** Behavior verified - Only activates with both inputs at 1  
 ✅ **OR:** Behavior verified - Activates with any input at 1  
-✅ **NOT:** Behavior verified - Correctly inverts input
+✅ **NOT:** Behavior verified - Correctly inverts the input
 
 **Note:** For derived gates validation (XOR, NAND, NOR, XNOR), see [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)  
 
 #### 2. Hardware Considerations
-- **LED Current:** Calculated according to specific resistors in each circuit
-- **Transistor Configuration:** NPN used as digital switches
-- **Base Resistors:** 1kΩ to limit base current and protect transistors
-- **Power Supply:** 9V used for main power supply
+- **LED Current:** Calculated according to the specific resistors in each circuit
+- **Transistor Configuration:** NPN transistors used as digital switches
+- **Base Resistors:** 1kΩ resistors to limit base current and protect transistors
+- **Power Supply:** 9V battery used for the main power supply
 
 #### 3. Hardware-Software Correspondence
 - **Binary States:** Physical representation (LED ON/OFF) corresponds to software (1/0)
-- **Boolean Logic:** Physical circuits implement same operations as code
+- **Boolean Logic:** Physical circuits implement the same operations as code
 - **Scalability:** Principles applicable to more complex integrated circuits
 
-## Procedure 3: JavaScript Implementation
+## Procedure 4: JavaScript Implementation
 
 ### Main File (logicGates.js)
 
+The actual repository implementation uses the `bit` normalization function and exports the three basic gates in `logicGates/logicGates.js`.
+
 ```javascript
+import { bit } from '../bit/bit.js';
+
 export function AND(input1, input2) {
-    return (input1 && input2) ? 1 : 0;
+    const normalizedInput1 = bit(input1);
+    const normalizedInput2 = bit(input2);
+    return bit(normalizedInput1 && normalizedInput2);
 }
 
 export function OR(input1, input2) {
-    return (input1 || input2) ? 1 : 0;
+    const normalizedInput1 = bit(input1);
+    const normalizedInput2 = bit(input2);
+    return bit(normalizedInput1 || normalizedInput2);
 }
 
 export function NOT(input) {
-    return input ? 0 : 1;
-}
-
-export function XOR(input1, input2) {
-    return (input1 && NOT(input2)) || (NOT(input1) && input2) ? 1 : 0;
-    // Alternatively: return input1 ^ input2; I know this works in JS, but for clarity,
-    // I used the above expression.
+    const normalizedInput = bit(input);
+    return bit(!normalizedInput);
 }
 
 const logicGates = {
     AND,
     OR,
-    NOT,
-    XOR
+    NOT
 };
 
 export default logicGates;
 ```
 
-### Test File (logicGatesTest.js)
+### Test File (`test/logicGatesTest.js`)
 
-```javascript
-import logicGates from './logicGates.js';
+The actual test file is located at `test/logicGatesTest.js` and uses the visualization helpers in `test/visualizeLogic/visualizer.js`. It imports `../logicGates/logicGates.js` and displays the results of each gate using emojis.
 
-const { AND, OR, NOT, XOR } = logicGates;
+This matches the test file present in the workspace (`/test/logicGatesTest.js`).
 
-function testAND(input1, input2) {
-    const result = (input1 && input2) ? 1 : 0;
-    const input1Emoji = input1 ? "🟡" : "⚫";
-    const input2Emoji = input2 ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of AND between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
-    return result;
-}
-
-function testOR(input1, input2) {
-    const result = (input1 || input2) ? 1 : 0;
-    const input1Emoji = input1 ? "🟡" : "⚫";
-    const input2Emoji = input2 ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of OR between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
-    return result;
-}
-
-function testNOT(input) {
-    const result = input ? 0 : 1;
-    const inputEmoji = input ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of NOT logic", inputEmoji, "is:", resultEmoji);
-    return result;
-}
-
-function testXOR(input1, input2) {
-    const result = input1 ^ input2;
-    const input1Emoji = input1 ? "🟡" : "⚫";
-    const input2Emoji = input2 ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of XOR between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
-    return result;
-}
-
-// Comprehensive testing of all gates
-console.log("=== Tests: AND ===");
-testAND(1, 0);
-testAND(1, 1);
-testAND(0, 0);
-testAND(0, 1);
-
-console.log("\n=== Tests: OR ===");
-testOR(1, 0);
-testOR(1, 1);
-testOR(0, 0);
-testOR(0, 1);
-
-console.log("\n=== Tests: NOT ===");
-testNOT(AND(1, 0));
-testNOT(AND(1, 1));
-
-console.log("\n=== Tests: XOR ===");
-testXOR(1, 0);
-testXOR(1, 1);
-testXOR(0, 0);
-testXOR(0, 1);
-```
-
-## Procedure 4: Implementation Features
+## Procedure 5: Implementation Features
 
 ### 1. Modular Design
-- **Individual export:** Each gate exported as independent function
+- **Individual export:** Each gate is exported as an independent function
 - **Default export:** `logicGates` object contains all functions
-- **Reusability:** Gates can use other gates (e.g., XOR uses NOT)
+- **Reusability:** Gates can use other gates
 
 ### 2. Binary Normalization
 - **Flexible input:** Accepts JavaScript truthy/falsy values
-- **Consistent output:** Always returns 0 or 1 explicitly
+- **Consistent output:** Always explicitly returns 0 or 1
 - **Predictable behavior:** Automatic conversion to binary values
 
-### 3. Detailed XOR Implementation
-- **Explicit method:** `(input1 && NOT(input2)) || (NOT(input1) && input2)`
-- **Educational clarity:** Shows underlying XOR logic
-- **Commented alternative:** `input1 ^ input2` available but not used
-
-### 4. Comprehensive Testing System
+### 3. Comprehensive Testing System
 - **Complete coverage:** All input combinations tested
 - **Clear visualization:** Emojis (🟡=1, ⚫=0) for easy understanding
 - **Gate composition:** NOT uses AND results to demonstrate interoperability
@@ -300,38 +208,27 @@ The result of NOT logic ⚫ is: 🟡
 The result of NOT logic 🟡 is: ⚫
 ```
 
-### XOR Tests
-```
-The result of XOR between 🟡 and ⚫ is: 🟡
-The result of XOR between 🟡 and 🟡 is: ⚫
-The result of XOR between ⚫ and ⚫ is: ⚫
-The result of XOR between ⚫ and 🟡 is: 🟡
-```
-
 ## Technical Analysis
 
 ### 1. Boolean Algebra Consistency
 ✅ **AND:** Correctly implements logical multiplication  
 ✅ **OR:** Correctly implements logical addition  
 ✅ **NOT:** Correctly implements logical negation  
-✅ **XOR:** Correctly implements exclusive addition  
 
 ### 2. Code Optimization
-- **Ternary operators:** Efficient use of `? :` for binary conversion
-- **Native logical operators:** Leverages JavaScript's `&&`, `||`
-- **Function reuse:** XOR uses NOT for greater clarity
+- **Ternary operators:** Efficient use of `? :` operator for binary conversion
+- **Native logical operators:** Leverages JavaScript's `&&` and `||` operators
 - **Clean structure:** Clear separation between logic and presentation
 
 ### 3. Scalability
 - **Solid foundation:** Fundamental gates for complex circuits
 - **Extensibility:** Easy addition of derived gates (NAND, NOR, etc.)
-- **Modularity:** Selective import based on project needs
+- **Modularity:** Selective import according to project needs
 
-## Applications in 8-Bit Processor
+## Applications in the 8-Bit Processor
 
 ### 1. Arithmetic Logic Unit (ALU)
 - **AND/OR:** Bitwise logical operations
-- **XOR:** Addition without carry, difference detection
 - **NOT:** Complement, data negation
 
 ### 2. Control Circuits
@@ -339,14 +236,13 @@ The result of XOR between ⚫ and 🟡 is: 🟡
 - **OR:** Control signal multiplexing
 - **NOT:** Control signal inversion
 
-### 3. Register and Memory
-- **XOR:** Data comparison, change detection
+### 3. Registers and Memory
 - **AND/OR:** Bit masks, data selection
 
 ## Conclusions
 
 ### 1. Successful Implementation
-The four fundamental logic gates have been correctly implemented with behavior that exactly matches standard truth tables.
+The three fundamental logic gates have been correctly implemented with behavior that exactly matches standard truth tables.
 
 ### 2. Code Quality
 - **Readability:** Clear and well-documented code
@@ -357,25 +253,19 @@ The four fundamental logic gates have been correctly implemented with behavior t
 The gates are ready to be used in more complex 8-bit processor components, providing the fundamental logical foundation.
 
 ### 4. Educational Innovations
-- **Enhanced visualization:** Emojis facilitate understanding of binary states
-- **Explanatory implementation:** XOR shows underlying logic instead of native operator
-- **Exhaustive testing:** Complete use case coverage
+- **Enhanced visualization:** Emojis facilitate the understanding of binary states
+- **Exhaustive testing:** Complete coverage of all use cases
 
 ## Follow-up Actions
 
 ### Completed ✅
-1. **Basic gate implementation:** AND, OR, NOT, XOR functional
+1. **Basic gate implementation:** AND, OR, NOT functional
 2. **Testing system:** Complete coverage with visualization
 3. **Modular structure:** Individual and collective export
 4. **Documentation:** Truth tables and complete technical analysis
 5. **Validation:** All tests pass correctly
 
-### Future
-1. **Derived gates:** Implement NAND, NOR, XNOR for completeness
-2. **Performance optimization:** Evaluate efficiency in massive operations
-3. **ALU integration:** Use gates in arithmetic logic unit
-4. **Combinational circuits:** Implement adders, multiplexers
-5. **Integration testing:** Validate functionality in complex circuits
-
 ---
 **Status:** ✅ Implementation completed and validated | **Test file:** `logicGatesTest.js` | **Next review:** Integration with ALU and combinational circuits
+
+---

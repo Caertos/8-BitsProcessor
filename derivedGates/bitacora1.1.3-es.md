@@ -37,16 +37,18 @@
   ```
 - **Nota:** NAND es una compuerta universal - puede construir cualquier otra compuerta
 
-#### 3. NOT Gate
-- **Function:** Inverts the input value
-- **Truth table:**
+#### 3. Compuerta NOR (NOT OR)
+- **Función:** Retorna 1 solo cuando ambas entradas son 0 (inverso de OR)
+- **Fórmula:** NOR = NOT(A OR B)
+- **Tabla de verdad:**
   ```
-  A | NOT A
-  0 |   1
-  1 |   0
+  A | B | A NOR B
+  0 | 0 |   1
+  0 | 1 |   0
+  1 | 0 |   0
+  1 | 1 |   0
   ```
-
-## Procedure 2: Tinkercad Simulation
+- **Nota:** NOR es una compuerta universal - puede construir cualquier otra compuerta
 
 #### 4. Compuerta XNOR (Exclusive NOR)
 - **Función:** Retorna 1 cuando las entradas son iguales (inverso de XOR)
@@ -150,14 +152,14 @@
 
 #### 2. Consideraciones de Hardware
 - **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
-- **Configuración de transistores:** NPN utilizados como switches digitales
-- **Resistencias de base:** 1kΩ para limitar corriente de base y proteger transistores
-- **Alimentación:** 9V utilizado para suministro de energía principal
+- **Configuración de transistores:** Transistores NPN utilizados como switches digitales
+- **Resistencias de base:** Resistencias de 1kΩ para limitar la corriente de base y proteger los transistores
+- **Alimentación:** Batería de 9V utilizada para el suministro de energía principal
 - **Complejidad:** XOR y XNOR requieren más transistores que las compuertas básicas
 
 #### 3. Correspondencia Hardware-Software
-- **Estados binarios:** Representación física (LED ON/OFF) corresponde a software (1/0)
-- **Lógica booleana:** Circuitos físicos implementan las mismas operaciones que el código
+- **Estados binarios:** La representación física (LED ON/OFF) corresponde al software (1/0)
+- **Lógica booleana:** Los circuitos físicos implementan las mismas operaciones que el código
 - **Escalabilidad:** Principios aplicables a circuitos integrados más complejos
 - **Universalidad:** NAND y NOR pueden construir cualquier otra compuerta lógica
 
@@ -229,17 +231,17 @@ function andFromNand(a, b) {
 
 ### Expansión del Proyecto
 
-1. **Sumadores completos:** Construir medio sumador y sumador completo usando XOR
-2. **Multiplexores:** Implementar usando compuertas derivadas
+1. **Sumadores completos:** Construir un medio sumador y un sumador completo usando XOR
+2. **Multiplexores:** Implementarlos usando compuertas derivadas
 3. **Decodificadores:** Crear circuitos de decodificación
 4. **Memoria básica:** Implementar flip-flops usando NAND o NOR
 5. **ALU simplificada:** Combinar compuertas para operaciones aritméticas básicas
 
 ### Optimizaciones
 
-- Minimizar número de transistores en implementaciones físicas
-- Reducir retardo de propagación en cadenas de compuertas
-- Implementar versiones con circuitos integrados (74LS series)
+- Minimizar el número de transistores en implementaciones físicas
+- Reducir el retardo de propagación en cadenas de compuertas
+- Implementar versiones con circuitos integrados (serie 74LS)
 
 ---
 

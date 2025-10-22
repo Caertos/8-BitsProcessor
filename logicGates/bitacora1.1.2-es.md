@@ -43,7 +43,7 @@
   1 |   0
   ```
 
-**Nota:** Para compuertas derivadas (XOR, NAND, NOR, XNOR), consultar [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
+**Nota:** Para compuertas derivadas (NAND, NOR, XNOR), consultar [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
 
 ## Procedimiento 2: Simulación en Tinkercad
 
@@ -117,30 +117,39 @@
 
 #### 2. Consideraciones de Hardware
 - **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
-- **Configuración de transistores:** NPN utilizados como switches digitales
-- **Resistencias de base:** 1kΩ para limitar corriente de base y proteger transistores
-- **Alimentación:** 9V utilizado para suministro de energía principal
+- **Configuración de transistores:** Transistores NPN utilizados como switches digitales
+- **Resistencias de base:** Resistencias de 1kΩ para limitar la corriente de base y proteger los transistores
+- **Alimentación:** Batería de 9V utilizada para el suministro de energía principal
 
 #### 3. Correspondencia Hardware-Software
-- **Estados binarios:** Representación física (LED ON/OFF) corresponde a software (1/0)
-- **Lógica booleana:** Circuitos físicos implementan las mismas operaciones que el código
+- **Estados binarios:** La representación física (LED ON/OFF) corresponde al software (1/0)
+- **Lógica booleana:** Los circuitos físicos implementan las mismas operaciones que el código
 - **Escalabilidad:** Principios aplicables a circuitos integrados más complejos
 
-## Procedimiento 3: Implementación en JavaScript
+## Procedimiento 4: Implementación en JavaScript
 
 ### Archivo Principal (logicGates.js)
 
+La implementación real del repositorio utiliza la función de normalización `bit` y exporta las tres compuertas básicas en `logicGates/logicGates.js`.
+
 ```javascript
+import { bit } from '../bit/bit.js';
+
 export function AND(input1, input2) {
-    return (input1 && input2) ? 1 : 0;
+    const normalizedInput1 = bit(input1);
+    const normalizedInput2 = bit(input2);
+    return bit(normalizedInput1 && normalizedInput2);
 }
 
 export function OR(input1, input2) {
-    return (input1 || input2) ? 1 : 0;
+    const normalizedInput1 = bit(input1);
+    const normalizedInput2 = bit(input2);
+    return bit(normalizedInput1 || normalizedInput2);
 }
 
 export function NOT(input) {
-    return input ? 0 : 1;
+    const normalizedInput = bit(input);
+    return bit(!normalizedInput);
 }
 
 const logicGates = {
@@ -152,60 +161,13 @@ const logicGates = {
 export default logicGates;
 ```
 
-**Nota:** Para implementación de compuertas derivadas (XOR, NAND, NOR, XNOR), consultar [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
+### Archivo de Pruebas (`test/logicGatesTest.js`)
 
-### Archivo de Pruebas (logicGatesTest.js)
+El archivo de pruebas real se encuentra en `test/logicGatesTest.js` y usa los helpers de visualización en `test/visualizeLogic/visualizer.js`. Importa `../logicGates/logicGates.js` y muestra los resultados de cada compuerta usando emojis.
 
-```javascript
-import logicGates from './logicGates.js';
+Esto coincide con el archivo de pruebas presente en el workspace (`/test/logicGatesTest.js`).
 
-const { AND, OR, NOT } = logicGates;
-
-function testAND(input1, input2) {
-    const result = (input1 && input2) ? 1 : 0;
-    const input1Emoji = input1 ? "🟡" : "⚫";
-    const input2Emoji = input2 ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of AND between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
-    return result;
-}
-
-function testOR(input1, input2) {
-    const result = (input1 || input2) ? 1 : 0;
-    const input1Emoji = input1 ? "🟡" : "⚫";
-    const input2Emoji = input2 ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of OR between", input1Emoji, "and", input2Emoji, "is:", resultEmoji);
-    return result;
-}
-
-function testNOT(input) {
-    const result = input ? 0 : 1;
-    const inputEmoji = input ? "🟡" : "⚫";
-    const resultEmoji = result ? "🟡" : "⚫";
-    console.log("The result of NOT logic", inputEmoji, "is:", resultEmoji);
-    return result;
-}
-
-// Comprehensive testing of all gates
-console.log("=== Tests: AND ===");
-testAND(1, 0);
-testAND(1, 1);
-testAND(0, 0);
-testAND(0, 1);
-
-console.log("\n=== Tests: OR ===");
-testOR(1, 0);
-testOR(1, 1);
-testOR(0, 0);
-testOR(0, 1);
-
-console.log("\n=== Tests: NOT ===");
-testNOT(AND(1, 0));
-testNOT(AND(1, 1));
-```
-
-## Procedimiento 4: Características de la Implementación
+## Procedimiento 5: Características de la Implementación
 
 ### 1. Diseño Modular
 - **Exportación individual:** Cada compuerta se exporta como función independiente
@@ -214,7 +176,7 @@ testNOT(AND(1, 1));
 
 ### 2. Normalización Binaria
 - **Entrada flexible:** Acepta valores truthy/falsy de JavaScript
-- **Salida consistente:** Siempre retorna 0 o 1 explícitamente
+- **Salida consistente:** Siempre retorna explícitamente 0 o 1
 - **Comportamiento predecible:** Conversión automática a valores binarios
 
 ### 3. Sistema de Pruebas Integral
@@ -254,8 +216,8 @@ The result of NOT logic 🟡 is: ⚫
 ✅ **NOT:** Implementa correctamente la negación lógica  
 
 ### 2. Optimización de Código
-- **Operadores ternarios:** Uso eficiente de `? :` para conversión binaria
-- **Operadores lógicos nativos:** Aprovecha `&&`, `||` de JavaScript
+- **Operadores ternarios:** Uso eficiente del operador `? :` para conversión binaria
+- **Operadores lógicos nativos:** Aprovecha los operadores `&&` y `||` de JavaScript
 - **Estructura limpia:** Separación clara entre lógica y presentación
 
 ### 3. Escalabilidad
@@ -267,7 +229,6 @@ The result of NOT logic 🟡 is: ⚫
 
 ### 1. Unidad Aritmético-Lógica (ALU)
 - **AND/OR:** Operaciones lógicas bit a bit
-- **XOR:** Suma sin acarreo, detección de diferencias
 - **NOT:** Complemento, negación de datos
 
 ### 2. Circuitos de Control
@@ -276,13 +237,12 @@ The result of NOT logic 🟡 is: ⚫
 - **NOT:** Inversión de señales de control
 
 ### 3. Registro y Memoria
-- **XOR:** Comparación de datos, detección de cambios
 - **AND/OR:** Máscaras de bits, selección de datos
 
 ## Conclusiones
 
 ### 1. Implementación Exitosa
-Las cuatro compuertas lógicas fundamentales han sido implementadas correctamente con comportamiento que coincide exactamente con las tablas de verdad estándar.
+Las tres compuertas lógicas fundamentales han sido implementadas correctamente con comportamiento que coincide exactamente con las tablas de verdad estándar.
 
 ### 2. Calidad del Código
 - **Legibilidad:** Código claro y bien documentado
@@ -293,25 +253,17 @@ Las cuatro compuertas lógicas fundamentales han sido implementadas correctament
 Las compuertas están listas para ser utilizadas en componentes más complejos del procesador de 8 bits, proporcionando la base lógica fundamental.
 
 ### 4. Innovaciones Educativas
-- **Visualización mejorada:** Emojis facilitan comprensión de estados binarios
-- **Implementación explicativa:** XOR muestra lógica subyacente en lugar de operador nativo
-- **Pruebas exhaustivas:** Cobertura completa de casos de uso
+- **Visualización mejorada:** Los emojis facilitan la comprensión de estados binarios
+- **Pruebas exhaustivas:** Cobertura completa de todos los casos de uso
 
 ## Acciones de Seguimiento
 
 ### Completadas ✅
-1. **Implementación de compuertas básicas:** AND, OR, NOT, XOR funcionales
+1. **Implementación de compuertas básicas:** AND, OR, NOT funcionales
 2. **Sistema de pruebas:** Cobertura completa con visualización
 3. **Estructura modular:** Exportación individual y en conjunto
 4. **Documentación:** Tablas de verdad y análisis técnico completo
 5. **Validación:** Todas las pruebas pasan correctamente
-
-### Futuras
-1. **Compuertas derivadas:** Implementar NAND, NOR, XNOR para completitud
-2. **Optimización de rendimiento:** Evaluar eficiencia en operaciones masivas
-3. **Integración ALU:** Usar compuertas en unidad aritmético-lógica
-4. **Circuitos combinacionales:** Implementar sumadores, multiplexores
-5. **Pruebas de integración:** Validar funcionamiento en circuitos complejos
 
 ---
 **Estado:** ✅ Implementación completada y validada | **Archivo de pruebas:** `logicGatesTest.js` | **Próxima revisión:** Integración con ALU y circuitos combinacionales

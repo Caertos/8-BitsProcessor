@@ -1,7 +1,7 @@
 # Guía de Procedimientos: Implementación de Bit
 
 **Fecha:** 19 de octubre de 2025  
-**Versión:** 1.1.1  
+**Bitacora:** 1.1.1  
 **Proyecto:** 8-Bits Processor  
 
 ---
@@ -9,12 +9,14 @@
 ## Procedimiento 1: Simulación en Tinkercad
 
 **🔗 Simulación Interactiva:**
+<div class="embed-simulation">
 <iframe width="725" height="453" src="https://www.tinkercad.com/embed/57Rf0VVflk2" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 </div>
 
 ### Materiales Necesarios
 - 1x Transistor NPN (2N2222 o similar)
-- 2x Resistencias (220Ω y 1kΩ)
+- 1x Pulsador
+- 2x Resistencias (470Ω y 1kΩ)
 - 1x LED
 - 1x Batería (9V)
 - Cables de conexión
@@ -23,7 +25,7 @@
 
 1. **Configuración del circuito base**
    - Conectar el emisor del transistor a tierra (GND)
-   - Conectar el colector a través de resistencia de 220Ω al LED
+   - Conectar el colector a través de resistencia de 470Ω al LED
    - Conectar el otro terminal del LED a VCC (9V)
 
 2. **Configuración de control**
@@ -44,11 +46,7 @@
 **Cálculo de Corriente del LED:**
 - Voltaje de alimentación: 9V
 - Voltaje directo LED (típico): ~2V
-- Resistencia limitadora: 220Ω
-- Corriente: I = (9V - 2V) / 220Ω = 31.8mA
-
-⚠️ **Nota importante:** La corriente calculada (31.8mA) excede ligeramente el límite recomendado de 20mA para LEDs estándar. Para mantener una corriente segura < 20mA, se recomienda usar una resistencia de 390Ω:
-- I = (9V - 2V) / 390Ω = 17.9mA ✅
+- Resistencia limitadora: 470Ω
 
 ## Procedimiento 2: Abstracción en JavaScript
 
@@ -62,7 +60,7 @@ export function bit(input = 0) {
 }
 ```
 
-### Implementación de Prueba (transistor.js)
+### Implementación de Prueba (transistorTest.js)
 
 ```javascript
 import { bit } from "./bit/bit.js";
@@ -149,12 +147,5 @@ La simulación en Tinkercad demuestra el funcionamiento físico real de un bit, 
 3. **Visualización implementada:** Emojis muestran estados del bit
 4. **Comportamiento validado:** Correspondencia hardware-software verificada
 
-### Futuras
-1. **Expandir funcionalidad:** Agregar métodos `set()` y `get()` para persistencia
-2. **Integrar con sistema:** Preparar para uso en registros de 8 bits
-3. **Optimizar rendimiento:** Evaluar eficiencia en operaciones masivas
-4. **Documentar patrones:** Crear biblioteca de señales de prueba
-5. **Organizar pruebas:** Crear archivos específicos (alu.js, register.js, etc.)
-
 ---
-**Estado:** ✅ Implementación completada y funcional | **Archivo de prueba:** `transistor.js` | **Próxima revisión:** Implementación de registro de 8 bits
+**Estado:** ✅ Implementación completada y funcional | **Archivo de prueba:** `transistorTest.js` | **Próxima revisión:** Implementación de registro de 8 bits

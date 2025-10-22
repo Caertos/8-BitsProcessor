@@ -11,7 +11,7 @@
 ### Implemented Gates
 
 #### 1. XOR Gate (Exclusive OR)
-- **Function:** Returns 1 when inputs are different
+- **Function:** Returns 1 when the inputs are different
 - **Formula:** XOR = (A AND NOT B) OR (NOT A AND B)
 - **Truth table:**
   ```
@@ -33,7 +33,7 @@
   1 | 0 |    1
   1 | 1 |    0
   ```
-- **Note:** NAND is a universal gate - can build any other gate
+- **Note:** NAND is a universal gate - it can build any other gate
 
 #### 3. NOR Gate (NOT OR)
 - **Function:** Returns 1 only when both inputs are 0 (inverse of OR)
@@ -46,10 +46,10 @@
   1 | 0 |   0
   1 | 1 |   0
   ```
-- **Note:** NOR is a universal gate - can build any other gate
+- **Note:** NOR is a universal gate - it can build any other gate
 
 #### 4. XNOR Gate (Exclusive NOR)
-- **Function:** Returns 1 when inputs are equal (inverse of XOR)
+- **Function:** Returns 1 when the inputs are equal (inverse of XOR)
 - **Formula:** XNOR = NOT(XOR) = (A AND B) OR (NOT A AND NOT B)
 - **Truth table:**
   ```
@@ -138,7 +138,7 @@
 - **One switch ON:** LED off (1 XNOR 0 = 0 or 0 XNOR 1 = 0)
 - **Both switches ON:** LED on (1 XNOR 1 = 1)
 
-**Note:** XNOR is useful as a comparator - LED lights up when both inputs are equal.
+**Note:** XNOR is useful as a comparator - the LED lights up when both inputs are equal.
 
 ### Experiment Analysis
 
@@ -149,15 +149,15 @@
 ⚙️ **XNOR:** Pending physical implementation - Theoretical behavior: activates with equal inputs
 
 #### 2. Hardware Considerations
-- **LED Current:** Calculated according to specific resistors in each circuit
-- **Transistor Configuration:** NPN used as digital switches
-- **Base Resistors:** 1kΩ to limit base current and protect transistors
-- **Power Supply:** 9V used for main power supply
+- **LED Current:** Calculated according to the specific resistors in each circuit
+- **Transistor Configuration:** NPN transistors used as digital switches
+- **Base Resistors:** 1kΩ resistors to limit base current and protect transistors
+- **Power Supply:** 9V battery used for the main power supply
 - **Complexity:** XOR and XNOR require more transistors than basic gates
 
 #### 3. Hardware-Software Correspondence
 - **Binary States:** Physical representation (LED ON/OFF) corresponds to software (1/0)
-- **Boolean Logic:** Physical circuits implement same operations as code
+- **Boolean Logic:** Physical circuits implement the same operations as code
 - **Scalability:** Principles applicable to more complex integrated circuits
 - **Universality:** NAND and NOR can build any other logic gate
 
@@ -229,15 +229,15 @@ function andFromNand(a, b) {
 
 ### Project Expansion
 
-1. **Full adders:** Build half adder and full adder using XOR
-2. **Multiplexers:** Implement using derived gates
+1. **Full adders:** Build a half adder and full adder using XOR
+2. **Multiplexers:** Implement them using derived gates
 3. **Decoders:** Create decoding circuits
 4. **Basic memory:** Implement flip-flops using NAND or NOR
 5. **Simplified ALU:** Combine gates for basic arithmetic operations
 
 ### Optimizations
 
-- Minimize number of transistors in physical implementations
+- Minimize the number of transistors in physical implementations
 - Reduce propagation delay in gate chains
 - Implement versions with integrated circuits (74LS series)
 
