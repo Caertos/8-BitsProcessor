@@ -10,8 +10,13 @@
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
-<iframe width="725" height="453" src="https://www.tinkercad.com/embed/57Rf0VVflk2" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<!-- Embed en modo vista (solo visualización). Evitamos parámetros de edición que requieren sesión/login. -->
+<iframe width="725" height="453" src="https://www.tinkercad.com/embed/57Rf0VVflk2" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" title="Simulación Tinkercad — vista"></iframe>
 </div>
+
+<p class="embed-fallback"><strong>Nota:</strong> Esta incrustación está configurada para visualización pública. Si necesitas abrir el editor (editar la simulación) se requiere iniciar sesión en Tinkercad — usa el enlace de abajo para abrir el editor en una nueva pestaña.</p>
+
+<p class="embed-fallback"><a href="https://www.tinkercad.com/embed/57Rf0VVflk2?editbtn=1" target="_blank" rel="noopener noreferrer">Abrir/Editar en Tinkercad (requiere iniciar sesión)</a></p>
 
 ### Materiales Necesarios
 - 1x Transistor NPN (2N2222 o similar)
