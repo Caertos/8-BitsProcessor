@@ -1,4 +1,4 @@
-import { bit } from "../bit/bit.js";
+import { bit } from "../src/core/bit/bit.js";
 import { displayTransistorHeader, displayTransistorSignal } from "./visualizeLogic/visualizer.js";
 
 function transistor() {

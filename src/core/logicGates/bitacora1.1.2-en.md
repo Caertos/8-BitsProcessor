@@ -1,7 +1,7 @@
-# Logic Gates Implementation Procedure Guide
+# Procedure Guide: Logic Gates Implementation
 
 **Date:** October 19, 2025  
-**Version:** 1.1.2  
+**Log:** 1.1.2  
 **Project:** 8-Bits Processor  
 
 ---
@@ -9,6 +9,7 @@
 ## 🇺🇸 ENGLISH
 
 ## Procedure 1: Logic Gates Theoretical Foundations
+Logic gates are the fundamental building blocks of digital circuits. They perform basic boolean operations that are essential for data processing in digital systems. In this project, we will implement the three basic logic gates: AND, OR, and NOT. Based on Boolean mathematical logic, each gate has a specific function defined by its truth table.
 
 ### Implemented Gates
 
@@ -43,77 +44,140 @@
   1 |   0
   ```
 
-**Note:** For derived gates (NAND, NOR, XNOR), see [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
-
 ## Procedure 2: Tinkercad Simulation
 
 ### AND Circuit - AND Gate
+The AND gate is implemented using NPN transistors in series configuration, where both transistors must be in the ON state for the LED to light up.
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/gLxxwnVH0Df-and?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Circuit configuration:**
+**Resistance calculations:**
+- **Transistor base resistance:**
+  - R_base = (V_battery - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (use closest commercial value: 1kΩ)
+
+**Required Materials:**
 - 2x Switches as inputs A and B
-- 1x NPN Transistor for each input
+- 2x NPN Transistor (one for each input)
 - 2x 1kΩ Resistors (transistor bases)
-- 1x LED current limiting resistor
+- 1x 350Ω LED current limiting resistor
 - 1x LED as output indicator
 - Series connections to simulate AND operation
+
+**Transistor configuration (NPN):**
+- Transistor 1: Base > Resistor A 1kΩ > Switch A
+- Transistor 2: Base > Resistor B 1kΩ > Switch B
+- Transistor 1 emitter > Transistor 2 collector
+- Transistor 2 emitter > Ground (GND)
+- Transistor 1 collector > 350Ω resistor
+
+**LED configuration:**
+- LED anode > VCC Battery (9V)
+- LED cathode > 350Ω resistor > Transistor 1 collector
+
+**Control configuration:**
+- Switch A > 1kΩ resistor > Transistor 1 base
+- Switch B > 1kΩ resistor > Transistor 2 base
 
 **Operation:**
 - **Both switches OFF:** LED off (0 AND 0 = 0)
 - **One switch ON:** LED off (1 AND 0 = 0 or 0 AND 1 = 0)
 - **Both switches ON:** LED on (1 AND 1 = 1)
+- **Why does it work?:** Only when both switches are on, since it is a series circuit. If transistor 1 does not allow energy to flow, it does not reach transistor 2, but if transistor 2 is off it also does not allow energy to flow to GND. Only when both transistors activate (ON) can current flow through them to ground (GND), turning on the LED.
 
 ### OR Circuit - OR Gate
+The OR gate is implemented using NPN transistors in parallel configuration, where either transistor can be in the ON state for the LED to light up.
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/cm3geL9L1aG-or?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Circuit configuration:**
+**Resistance calculations:**
+- **Transistor base resistance:**
+  - R_base = (V_battery - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (use closest commercial value: 1kΩ)
+
+**Required Materials:**
 - 2x Switches as inputs A and B
-- 2x NPN Transistors in parallel
+- 2x NPN Transistor (one for each input)
 - 2x 1kΩ Resistors (transistor bases)
-- 1x LED current limiting resistor
+- 1x 350Ω LED current limiting resistor
 - 1x LED as output indicator
 - Parallel connections to simulate OR operation
+
+**Transistor configuration (NPN):**
+- Transistor 1: Base > Resistor A 1kΩ > Switch A
+- Transistor 2: Base > Resistor B 1kΩ > Switch B
+- Transistor 1 emitter > Ground (GND)
+- Transistor 2 emitter > Ground (GND)
+- Transistor 1 collector > 350Ω resistor
+- Transistor 2 collector > 350Ω resistor (shared)
+
+**LED configuration:**
+- LED anode > VCC Battery (9V)
+- LED cathode > 350Ω resistor > Transistor collectors (parallel connection)
+
+**Control configuration:**
+- Switch A > 1kΩ resistor > Transistor 1 base
+- Switch B > 1kΩ resistor > Transistor 2 base
 
 **Operation:**
 - **Both switches OFF:** LED off (0 OR 0 = 0)
 - **One switch ON:** LED on (1 OR 0 = 1 or 0 OR 1 = 1)
 - **Both switches ON:** LED on (1 OR 1 = 1)
+- **Why does it work?:** When both switches are off, both transistors are in the OFF state, preventing current from flowing through the LED, keeping it off. When either switch is on, the corresponding transistor activates (ON), allowing current to flow through it to GND, turning on the LED.
 
 ### NOT Circuit - NOT Gate
+The NOT gate is implemented using an NPN transistor in inverter configuration, where the transistor functions as a switch that inverts the input signal.
 
 **🔗 Interactive Simulation:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Circuit configuration:**
+**Resistance calculations:**
+- **Transistor base resistance:**
+  - R_base = (V_battery - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (use closest commercial value: 1kΩ)
+- **LED pull-up resistance:**
+  - R_pullup = (V_battery - V_LED) / I_LED
+  - R_pullup = (9V - 2V) / 0.02A = 350Ω
+
+**Required Materials:**
 - 1x Switch as input A
 - 1x NPN Transistor configured as inverter
 - 1x 1kΩ Resistor (transistor base)
-- Pull-up and current limiting resistors according to circuit design
+- 1x 350Ω Resistor (LED pull-up)
 - 1x LED as output indicator
 - Inverter configuration: LED on when input is deactivated
 
+**Transistor configuration (NPN):**
+- Transistor: Base > 1kΩ resistor > Switch A
+- Transistor emitter > Ground (GND)
+- Transistor collector > LED cathode
+
+**LED configuration:**
+- LED anode > 350Ω resistor > VCC Battery (9V)
+- LED cathode > Transistor collector
+
+**Control configuration:**
+- Switch A > 1kΩ resistor > Transistor base
+
 **Operation:**
-- **Switch OFF:** LED on (NOT 0 = 1)
-- **Switch ON:** LED off (NOT 1 = 0)
+- **Switch OFF:** LED on (NOT 0 = 1) - Transistor OFF, current flows through LED
+- **Switch ON:** LED off (NOT 1 = 0) - Transistor ON, current diverted to ground
+- **Why does it work?:** Based on the fact that energy flows through the path of least resistance. When the switch is off, the transistor is in the OFF state, allowing current to flow through the LED, turning it on. When the switch is on, the transistor activates (ON), creating a direct path to ground (GND) and diverting current from the LED, turning it off.
 
 ## Procedure 3: Experiment Analysis
 
 #### 1. Truth Table Validation
 ✅ **AND:** Behavior verified - Only activates with both inputs at 1  
 ✅ **OR:** Behavior verified - Activates with any input at 1  
-✅ **NOT:** Behavior verified - Correctly inverts the input
-
-**Note:** For derived gates validation (XOR, NAND, NOR, XNOR), see [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)  
+✅ **NOT:** Behavior verified - Correctly inverts the input  
 
 #### 2. Hardware Considerations
 - **LED Current:** Calculated according to the specific resistors in each circuit
@@ -188,18 +252,18 @@ This matches the test file present in the workspace (`/test/logicGatesTest.js`).
 
 ### AND Tests
 ```
-The result of AND between 🟡 and ⚫ is: ⚫
-The result of AND between 🟡 and 🟡 is: 🟡
 The result of AND between ⚫ and ⚫ is: ⚫
 The result of AND between ⚫ and 🟡 is: ⚫
+The result of AND between 🟡 and ⚫ is: ⚫
+The result of AND between 🟡 and 🟡 is: 🟡
 ```
 
 ### OR Tests
 ```
-The result of OR between 🟡 and ⚫ is: 🟡
-The result of OR between 🟡 and 🟡 is: 🟡
 The result of OR between ⚫ and ⚫ is: ⚫
 The result of OR between ⚫ and 🟡 is: 🟡
+The result of OR between 🟡 and ⚫ is: 🟡
+The result of OR between 🟡 and 🟡 is: 🟡
 ```
 
 ### NOT Tests

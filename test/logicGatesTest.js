@@ -1,4 +1,4 @@
-import logicGates from "../logicGates/logicGates.js";
+import logicGates from "../src/core/logicGates/logicGates.js";
 import { 
     displayTestSection, 
     printTestsLogs,

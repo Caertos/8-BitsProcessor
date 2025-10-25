@@ -1,10 +1,14 @@
-# Bit Implementation Procedure Guide
+# Procedure Guide: Bit Implementation
 
 **Date:** October 19, 2025  
-**Version:** 1.1.1  
+**Log:** 1.1.1  
 **Project:** 8-Bits Processor  
 
 ---
+
+## Preface: Fundamental Unit - The Bit
+
+The bit is the basic unit of information in computing and electronics. It represents a binary state, either 0 (off) or 1 (on). In this project, we start with the bit as the minimum unit since it is a fundamental concept for understanding digital systems. We have implemented its behavior in both hardware (simulation) and software (JavaScript).
 
 ## Procedure 1: Tinkercad Simulation
 
@@ -16,37 +20,63 @@
 ### Required Materials
 - 1x NPN Transistor (2N2222 or similar)
 - 1x Push button
-- 2x Resistors (470Ω and 1kΩ)
+- 2x Resistors (350Ω and 8.3kΩ)
 - 1x LED
-- 1x 9V Battery
+- 1x Battery (9V)
 - Connection wires
 
 ### Implementation Steps
 
-1. **Base circuit configuration**
+1. **Transistor configuration (NPN)**
    - Connect the transistor emitter to ground (GND)
-   - Connect the collector through a 470Ω resistor to the LED
-   - Connect the LED's other terminal to VCC (9V)
+   - Connect the collector to the LED cathode
+   - Connect the base to the push button
 
 2. **Control configuration**
-   - Connect the transistor base through a 1kΩ resistor
-   - Create a control signal input point
+   - The other terminal of the push button connects to the 8.3kΩ resistor, which in turn connects to the 9V battery
 
-3. **State verification**
+3. **LED configuration**
+   - The LED anode connects through a 350Ω resistor to the 9V battery
+
+4. **State verification**
    - **State 0:** Control signal = 0V → LED off
    - **State 1:** Control signal = 9V → LED on
 
-4. **Functionality testing**
-   - Alternate the control signal between 0V and 9V
-   - Verify the LED response (ON/OFF)
+5. **Functionality testing**
+   - Alternate control signal between 0V and 9V
+   - Verify LED response (ON/OFF)
    - Confirm clean switching without intermediate states
 
 ### Technical Considerations
 
 **LED Current Calculation:**
-- Supply voltage: 9V
-- LED forward voltage (typical): ~2V
-- Current limiting resistor: 470Ω
+To operate the LED safely, a limiting resistor is used. Its value is calculated with the formula:
+
+```R = (V_battery - V_LED) / I_LED
+```
+Where:
+- R = Resistance (Ω)
+- V_battery = Battery voltage (9V)
+- V_LED = LED forward voltage (~2V)
+- I_LED = Desired LED current (20mA = 0.02A)
+
+Based on Ohm's law, we get:
+
+```R = (9V - 2V) / 0.02A = 350Ω
+```
+
+**Base Resistance Calculation:**
+To limit the current in the transistor base, a base resistor is calculated as:
+
+```R_base = (V_battery - V_BE) / I_B
+```
+Where:
+- V_BE = Base-emitter voltage (~0.7V)
+- I_B = Base current (usually 1/10 of the collector current)
+Assuming I_B = 1mA:
+
+```R_base = (9V - 0.7V) / 0.001A = 8.3kΩ
+```
 
 ## Procedure 2: JavaScript Abstraction
 
@@ -61,26 +91,23 @@ export function bit(input = 0) {
 ```
 
 ### Test Implementation (transistorTest.js)
+Alternating signal simulation to verify bit behavior:
 
 ```javascript
-import { bit } from "./bit/bit.js";
+import { bit } from "../src/core/bit/bit.js";
+import { displayTransistorHeader, displayTransistorSignal } from "./visualizeLogic/visualizer.js";
 
-function main() {
-  console.log("Transistor sends alternating signals to bit:\n");
+function transistor() {
+  displayTransistorHeader();
   
   for (let i = 0; i < 10; i++) {
-    const signal = i % 2;     // Generate alternating signal 0,1,0,1...
-    const result = bit(signal); // Send signal to bit
-    
-    if (result === 1) {
-      console.log("🟡");       // LED on
-    } else {
-      console.log("⚫");       // LED off
-    }
+    const signal = i % 2;
+    const result = bit(signal);
+    displayTransistorSignal(signal, result);
   }
 }
 
-main();
+transistor();
 ```
 
 ### Development Steps
@@ -95,13 +122,13 @@ main();
    - Return the bit state (0 or 1)
 
 3. **Create transistor simulation**
-   - The `for` loop generates alternating signals (0,1,0,1...)
+   - The `for` loop alternates signals (0 and 1) using the modulo operator
    - Each iteration sends a signal to the bit
-   - Visualize the result with emojis (🟡/⚫)
+   - Visualize result with emojis (🟡/⚫)
 
 4. **Validate behavior**
-   - Execute with `node ./bit/transistorTest.js`
-   - Verify correct state alternation
+   - Execute with `npm run test:bit`
+   - Verify correct alternation between states
    - Confirm hardware-software correspondence
 
 ## Results Obtained
@@ -112,10 +139,10 @@ main();
 ✅ **Effective control:** The input signal controls the output state  
 
 ### Software (JavaScript)
-✅ **Operational function:** Accepts an input parameter and returns binary values  
+✅ **Operational function:** Accepts input parameter and returns binary values  
 ✅ **Clean code:** Modular and exportable structure  
-✅ **Correct simulation:** The transistor sends alternating signals to the bit  
-✅ **Functional visualization:** Emojis indicate the state (🟡=1, ⚫=0)  
+✅ **Correct simulation:** Transistor sends alternating signals to bit  
+✅ **Functional visualization:** Emojis indicate state (🟡=1, ⚫=0)  
 ✅ **Verified behavior:** Correct alternation between states  
 
 ## Conclusions
@@ -142,17 +169,10 @@ The Tinkercad simulation demonstrates real physical bit operation, while the Jav
 ## Follow-up Actions
 
 ### Completed ✅
-1. **JavaScript function corrected:** Implemented the input parameter
-2. **Functional simulation:** Virtual transistor alternates between states
-3. **Visualization implemented:** Emojis show the bit states
+1. **JavaScript function corrected:** Implemented input parameter
+2. **Functional simulation:** Virtual transistor alternating states
+3. **Visualization implemented:** Emojis show bit states
 4. **Behavior validated:** Hardware-software correspondence verified
-
-### Future
-1. **Expand functionality:** Add `set()` and `get()` methods for persistence
-2. **System integration:** Prepare for use in 8-bit registers
-3. **Performance optimization:** Evaluate efficiency in massive operations
-4. **Document patterns:** Create a test signal library
-5. **Organize tests:** Create specific test files (alu.js, register.js, etc.)
 
 ---
 **Status:** ✅ Implementation completed and functional | **Test file:** `transistorTest.js` | **Next review:** 8-bit register implementation

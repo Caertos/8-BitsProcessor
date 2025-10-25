@@ -1,10 +1,14 @@
 # Guía de Procedimientos: Implementación de Bit
 
 **Fecha:** 19 de octubre de 2025  
-**Bitacora:** 1.1.1  
-**Proyecto:** 8-Bits Processor  
+**Bitácora:** 1.1.1  
+**Proyecto:** 8-Bits Processor
 
 ---
+
+## Prefacio: Unidad Fundamental - El Bit
+
+El bit es la unidad básica de información en computación y electrónica. Representa un estado binario, ya sea 0 (apagado) o 1 (encendido). En este proyecto, iniciaremos con el bit como unidad mínima ya que es un concepto fundamental para el entendimiento de los sistemas digitales. Hemos implementado su comportamiento tanto en hardware (simulación) como en software (JavaScript).
 
 ## Procedimiento 1: Simulación en Tinkercad
 
@@ -16,27 +20,29 @@
 ### Materiales Necesarios
 - 1x Transistor NPN (2N2222 o similar)
 - 1x Pulsador
-- 2x Resistencias (470Ω y 1kΩ)
+- 2x Resistencias (350Ω y 8.3kΩ)
 - 1x LED
 - 1x Batería (9V)
 - Cables de conexión
 
 ### Pasos de Implementación
 
-1. **Configuración del circuito base**
+1. **Configuración del transistor (NPN)**
    - Conectar el emisor del transistor a tierra (GND)
-   - Conectar el colector a través de resistencia de 470Ω al LED
-   - Conectar el otro terminal del LED a VCC (9V)
+   - Conectar el colector al cátodo del LED
+   - Conectar la base al pulsador
 
 2. **Configuración de control**
-   - Conectar la base del transistor a través de resistencia de 1kΩ
-   - Crear punto de entrada para señal de control
+   - El otro terminal del pulsador se conecta a la resistencia de 1kΩ, que a su vez se conecta a la batería de 9V
 
-3. **Verificación de estados**
+3. **Configuración del LED**
+   - El ánodo del LED se conecta a través de una resistencia de 470Ω a la batería de 9V
+
+4. **Verificación de estados**
    - **Estado 0:** Señal de control = 0V → LED apagado
    - **Estado 1:** Señal de control = 9V → LED encendido
 
-4. **Pruebas de funcionamiento**
+5. **Pruebas de funcionamiento**
    - Alternar señal de control entre 0V y 9V
    - Verificar respuesta del LED (ON/OFF)
    - Confirmar conmutación limpia sin estados intermedios
@@ -44,9 +50,33 @@
 ### Consideraciones Técnicas
 
 **Cálculo de Corriente del LED:**
-- Voltaje de alimentación: 9V
-- Voltaje directo LED (típico): ~2V
-- Resistencia limitadora: 470Ω
+Para hacer funcionar el LED de manera segura, se utiliza una resistencia limitadora. Su valor se calcula con la fórmula:
+
+```R = (V_batería - V_LED) / I_LED
+```
+Donde:
+- R = Resistencia (Ω)
+- V_batería = Voltaje de la batería (9V)
+- V_LED = Voltaje directo del LED (~2V)
+- I_LED = Corriente deseada del LED (20mA = 0.02A)
+
+Basándonos en la ley de Ohm, se obtiene:
+
+```R = (9V - 2V) / 0.02A = 350Ω
+```
+
+**Cálculo de Resistencia de Base:**
+Para limitar la corriente en la base del transistor, se utiliza una resistencia base calculada como:
+
+```R_base = (V_batería - V_BE) / I_B
+```
+Donde:
+- V_BE = Voltaje base-emisor (~0.7V)
+- I_B = Corriente base (usualmente 1/10 de la corriente del colector)
+Asumiendo I_B = 1mA:
+
+```R_base = (9V - 0.7V) / 0.001A = 8.3kΩ
+```
 
 ## Procedimiento 2: Abstracción en JavaScript
 
@@ -61,26 +91,23 @@ export function bit(input = 0) {
 ```
 
 ### Implementación de Prueba (transistorTest.js)
+Simulación de señales alternadas para verificar el comportamiento del bit:
 
 ```javascript
-import { bit } from "./bit/bit.js";
+import { bit } from "../src/core/bit/bit.js";
+import { displayTransistorHeader, displayTransistorSignal } from "./visualizeLogic/visualizer.js";
 
-function main() {
-  console.log("El transistor envía señales alternadas al bit:\n");
+function transistor() {
+  displayTransistorHeader();
   
   for (let i = 0; i < 10; i++) {
-    const signal = i % 2;     // Genera señal alternada 0,1,0,1...
-    const result = bit(signal); // Envía señal al bit
-    
-    if (result === 1) {
-      console.log("🟡");       // LED encendido
-    } else {
-      console.log("⚫");       // LED apagado
-    }
+    const signal = i % 2;
+    const result = bit(signal);
+    displayTransistorSignal(signal, result);
   }
 }
 
-main();
+transistor();
 ```
 
 ### Pasos de Desarrollo
@@ -95,12 +122,12 @@ main();
    - Retornar estado del bit (0 o 1)
 
 3. **Crear simulación de transistor**
-   - Bucle `for` genera señales alternadas (0,1,0,1...)
+   - El ciclo `for` alterna señales (0 y 1) usando el operador módulo 
    - Cada iteración envía señal al bit
    - Visualizar resultado con emojis (🟡/⚫)
 
 4. **Validar comportamiento**
-   - Ejecutar con `node ./bit/transistor.js`
+   - Ejecutar con `npm run test:bit`
    - Verificar alternancia correcta entre estados
    - Confirmar correspondencia hardware-software
 

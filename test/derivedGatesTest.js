@@ -1,4 +1,4 @@
-import derivedGates from "../derivedGates/derivedGates.js";
+import derivedGates from "../src/core/derivedGates/derivedGates.js";
 import { 
     displayTestSection, 
     printTestsLogs

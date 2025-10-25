@@ -1,7 +1,7 @@
 # Guía de Procedimientos: Implementación de Compuertas Lógicas
 
 **Fecha:** 19 de octubre de 2025  
-**Versión:** 1.1.2  
+**Bitácora:** 1.1.2  
 **Proyecto:** 8-Bits Processor  
 
 ---
@@ -9,6 +9,7 @@
 ## 🇪🇸 ESPAÑOL
 
 ## Procedimiento 1: Fundamentos Teóricos de Compuertas Lógicas
+Las compuertas lógicas son los bloques fundamentales de los circuitos digitales. Realizan operaciones booleanas básicas que son esenciales para el procesamiento de datos en sistemas digitales. En este proyecto, implementaremos las tres compuertas lógicas básicas: AND, OR y NOT. Basada en la lógica matemática de Boole, cada compuerta tiene una función específica definida por su tabla de verdad.
 
 ### Compuertas Implementadas
 
@@ -43,68 +44,133 @@
   1 |   0
   ```
 
-**Nota:** Para compuertas derivadas (NAND, NOR, XNOR), consultar [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)
-
 ## Procedimiento 2: Simulación en Tinkercad
 
 ### Circuito AND - Compuerta Y
+La compuerta AND se implementa utilizando transistores NPN en configuración en serie, donde ambos transistores deben estar en estado ON para que el LED se encienda.
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/gLxxwnVH0Df-and?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Configuración del circuito:**
+**Cálculos para resistencias:**
+- **Resistencia las bases de los transistores:**
+  - R_base = (V_batería - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (usar valor comercial cercano: 1kΩ)
+
+**Materiales Necesarios:**
 - 2x Interruptores (Switch) como entradas A y B
-- 1x Transistor NPN para cada entrada
+- 2x Transistor NPN (uno para cada entrada)
 - 2x Resistencias de 1kΩ (bases de transistores)
-- 1x Resistencia limitadora de corriente del LED
+- 1x Resistencia de 350Ω limitadora de corriente del LED
 - 1x LED como indicador de salida
 - Conexiones en serie para simular operación AND
+
+**Configuración de los transistores (NPN):**
+- Transistor 1: Base > Resistencia A 1kΩ > Interruptor A
+- Transistor 2: Base > Resistencia B 1kΩ > Interruptor B
+- Emisor de transistor 1 > Colector de transistor 2
+- Emisor de transistor 2 > Tierra (GND)
+- Colector de transistor 1 > Resistencia de 350Ω
+
+**Configuración del LED:**
+- Ánodo del LED > VCC Batería (9V)
+- Cátodo del LED > Resistencia de 350Ω > Colector del transistor 1
+
+**Configuración de los controles:**
+- Interruptor A > resistencia de 1kΩ > Base del transistor 1
+- Interruptor B > resistencia de 1kΩ > Base del transistor 2
 
 **Funcionamiento:**
 - **Ambos switches OFF:** LED apagado (0 AND 0 = 0)
 - **Un switch ON:** LED apagado (1 AND 0 = 0 ó 0 AND 1 = 0)
 - **Ambos switches ON:** LED encendido (1 AND 1 = 1)
+- **¿Por qué funciona?:** Solo cuando ambos interruptores están encendidos, ya que es un circuito en serie. Si el transistor 1 no permite que fluya la energía, esta no llega al transistor 2, pero si el transistor 2 está apagado tampoco permite que la energía fluya hacia GND. Solo cuando ambos transistores se activan (ON) la corriente puede fluir a través de ellos hacia tierra (GND), encendiendo el LED.
 
 ### Circuito OR - Compuerta O
+La compuerta OR se implementa utilizando transistores NPN en configuración en paralelo, donde cualquiera de los transistores puede estar en estado ON para que el LED se encienda.
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/cm3geL9L1aG-or?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Configuración del circuito:**
+**Cálculos para resistencias:**
+- **Resistencia las bases de los transistores:**
+  - R_base = (V_batería - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (usar valor comercial cercano: 1kΩ)
+
+**Materiales Necesarios:**
 - 2x Interruptores (Switch) como entradas A y B
-- 2x Transistores NPN en paralelo
+- 2x Transistor NPN (uno para cada entrada)
 - 2x Resistencias de 1kΩ (bases de transistores)
-- 1x Resistencia limitadora de corriente del LED
+- 1x Resistencia de 350Ω limitadora de corriente del LED
 - 1x LED como indicador de salida
 - Conexiones en paralelo para simular operación OR
+
+**Configuración de los transistores (NPN):**
+- Transistor 1: Base > Resistencia A 1kΩ > Interruptor A
+- Transistor 2: Base > Resistencia B 1kΩ > Interruptor B
+- Emisor de transistor 1 > Tierra (GND)
+- Emisor de transistor 2 > Tierra (GND)
+- Colector de transistor 1 > Resistencia de 350Ω
+- Colector de transistor 2 > Resistencia de 350Ω (compartida)
+
+**Configuración del LED:**
+- Ánodo del LED > VCC Batería (9V)
+- Cátodo del LED > Resistencia de 350Ω > Colectores de los transistores (conexión paralela)
+
+**Configuración de los controles:**
+- Interruptor A > resistencia de 1kΩ > Base del transistor 1
+- Interruptor B > resistencia de 1kΩ > Base del transistor 2
 
 **Funcionamiento:**
 - **Ambos switches OFF:** LED apagado (0 OR 0 = 0)
 - **Un switch ON:** LED encendido (1 OR 0 = 1 ó 0 OR 1 = 1)
 - **Ambos switches ON:** LED encendido (1 OR 1 = 1)
+- **¿Por qué funciona?:** Cuando ambos interruptores están apagados, ambos transistores están en estado OFF, impidiendo que la corriente fluya a través del LED, manteniéndolo apagado. Cuando cualquiera de los interruptores está encendido, el transistor correspondiente se activa (ON), haciendo que la corriente pueda fluir a través de él hacia GND, permitiendo que encienda el LED.
 
 ### Circuito NOT - Compuerta NO
+La compuerta NOT se implementa utilizando un transistor NPN en configuración inversora, donde el transistor funciona como un interruptor que invierte la señal de entrada.
 
 **🔗 Simulación Interactiva:**
 <div class="embed-simulation">
 <iframe src="https://www.tinkercad.com/embed/aQ5fxvKhfP8-not?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </div>
 
-**Configuración del circuito:**
+**Cálculos para resistencias:**
+- **Resistencia de la base del transistor:**
+  - R_base = (V_batería - V_BE) / I_B
+  - R_base = (9V - 0.7V) / 0.01A = 830Ω (usar valor comercial cercano: 1kΩ)
+- **Resistencia pull-up del LED:**
+  - R_pullup = (V_batería - V_LED) / I_LED
+  - R_pullup = (9V - 2V) / 0.02A = 350Ω
+
+**Materiales Necesarios:**
 - 1x Interruptor (Switch) como entrada A
 - 1x Transistor NPN configurado como inversor
 - 1x Resistencia de 1kΩ (base del transistor)
-- Resistencias de pull-up y limitadoras según diseño del circuito
+- 1x Resistencia de 350Ω (pull-up del LED)
 - 1x LED como indicador de salida
 - Configuración inversora: LED encendido cuando entrada está desactivada
 
+**Configuración del transistor (NPN):**
+- Transistor: Base > Resistencia 1kΩ > Interruptor A
+- Emisor del transistor > Tierra (GND)
+- Colector del transistor > Cátodo del LED
+
+**Configuración del LED:**
+- Ánodo del LED > Resistencia de 350Ω > VCC Batería (9V)
+- Cátodo del LED > Colector del transistor
+
+**Configuración del control:**
+- Interruptor A > resistencia de 1kΩ > Base del transistor
+
 **Funcionamiento:**
-- **Switch OFF:** LED encendido (NOT 0 = 1)
-- **Switch ON:** LED apagado (NOT 1 = 0)
+- **Switch OFF:** LED encendido (NOT 0 = 1) - Transistor OFF, corriente fluye por LED
+- **Switch ON:** LED apagado (NOT 1 = 0) - Transistor ON, corriente desviada a tierra
+- **¿Por qué funciona?:** Basándonos en el hecho de que la energía fluye por el camino de menor resistencia. Cuando el interruptor está apagado, el transistor está en estado OFF, permitiendo que la corriente fluya a través del LED, encendiéndolo. Cuando el interruptor está encendido, el transistor se activa (ON), creando un camino directo a tierra (GND) y desviando la corriente del LED, apagándolo.
 
 ## Procedimiento 3: Análisis de los Experimentos
 
@@ -112,8 +178,6 @@
 ✅ **AND:** Comportamiento verificado - Solo se activa con ambas entradas en 1  
 ✅ **OR:** Comportamiento verificado - Se activa con cualquier entrada en 1  
 ✅ **NOT:** Comportamiento verificado - Invierte la entrada correctamente
-
-**Nota:** Para validación de compuertas derivadas (XOR, NAND, NOR, XNOR), consultar [bitacora1.1.3.md](../derivedGates/bitacora1.1.3.md)  
 
 #### 2. Consideraciones de Hardware
 - **Corriente del LED:** Calculada según las resistencias específicas de cada circuito
@@ -188,18 +252,18 @@ Esto coincide con el archivo de pruebas presente en el workspace (`/test/logicGa
 
 ### Pruebas AND
 ```
-The result of AND between 🟡 and ⚫ is: ⚫
-The result of AND between 🟡 and 🟡 is: 🟡
 The result of AND between ⚫ and ⚫ is: ⚫
 The result of AND between ⚫ and 🟡 is: ⚫
+The result of AND between 🟡 and ⚫ is: ⚫
+The result of AND between 🟡 and 🟡 is: 🟡
 ```
 
 ### Pruebas OR
 ```
-The result of OR between 🟡 and ⚫ is: 🟡
-The result of OR between 🟡 and 🟡 is: 🟡
 The result of OR between ⚫ and ⚫ is: ⚫
 The result of OR between ⚫ and 🟡 is: 🟡
+The result of OR between 🟡 and ⚫ is: 🟡
+The result of OR between 🟡 and 🟡 is: 🟡
 ```
 
 ### Pruebas NOT
