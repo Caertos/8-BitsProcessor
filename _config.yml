@@ -21,13 +21,12 @@ defaults:
       layout: "default"
 
 exclude:
-  - "*.js"
   - "node_modules/"
   - "package.json"
   - "test/"
-  - "src/**/*.js"
+  - "src/core/**/*.js"  # Solo excluir JS de src/core (el código de simulación)
 
-# Include markdown files from src directory
+# Include archivos específicos
 include:
   - "src/core/bit/*.md"
   - "src/core/logicGates/*.md"

@@ -123,8 +123,8 @@
 /* Language Switcher */
 .lang-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: 2px solid #00d4aa;
   border-radius: 50%;
@@ -254,46 +254,61 @@
     border-radius: 0;
     padding: 0.85rem 1rem;
     border-bottom: 1px solid #21262d;
+    position: relative;
   }
   
-  /* En móvil, el dropdown también usa position absolute pero relativo a su contenedor */
+  /* Agregar indicador de dropdown en móvil */
+  .dropdown .nav-link::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+    color: #00d4aa;
+  }
+  
+  .dropdown.dropdown-open .nav-link::after {
+    transform: rotate(180deg);
+  }
+  
+  /* En móvil, cambiar a estilo acordeón vertical */
   .dropdown {
     position: relative;
   }
   
   .dropdown-menu {
-    position: absolute;
-    left: 100%;
-    top: 0;
+    position: static;
     opacity: 0;
     visibility: hidden;
-    max-height: none;
-    overflow: visible;
-    transform: translateX(-10px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-    border: 1px solid #30363d;
+    max-height: 0;
+    overflow: hidden;
+    transform: none;
+    box-shadow: none;
+    border: none;
     border-left: 3px solid #00d4aa;
-    background-color: #1a1f26;
+    background-color: #0a0e13;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0;
     transition: all 0.3s ease;
-    z-index: 1000;
-    min-width: 200px;
+    z-index: auto;
+    min-width: auto;
   }
   
-  .dropdown:hover .dropdown-menu {
+  /* Activar dropdown con click en móvil (estilo acordeón) */
+  .dropdown.dropdown-open .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0);
+    max-height: 500px;
+    padding: 0.5rem 0;
   }
   
   .dropdown-menu a {
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 1rem 0.65rem 2rem;
     border-left: 3px solid transparent;
   }
   
   .dropdown-menu a:hover {
-    padding-left: 1.25rem;
+    padding-left: 2.5rem;
     border-left-color: #00d4aa;
   }
   
