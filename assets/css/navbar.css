@@ -256,11 +256,9 @@
     border-bottom: 1px solid #21262d;
   }
   
-  /* En móvil, el dropdown también usa position absolute pero dentro del nav-menu */
+  /* En móvil, el dropdown también usa position absolute pero relativo a su contenedor */
   .dropdown {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
   }
   
   .dropdown-menu {

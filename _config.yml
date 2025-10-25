@@ -1,6 +1,10 @@
 title: "8-Bit Processor Simulation"
 description: "Un proyecto educativo paso a paso que implementa un procesador de 8 bits"
 
+# URLs - Importante para que funcione tanto local como en GitHub Pages
+url: "https://caertos.github.io"
+baseurl: "/8-BitsProcessor"
+
 # Theme and layout configuration
 theme: minima
 markdown: kramdown
