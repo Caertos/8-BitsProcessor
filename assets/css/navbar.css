@@ -122,6 +122,9 @@
 
 /* Language Switcher */
 .lang-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: 2px solid #00d4aa;
   border-radius: 50%;
@@ -255,7 +258,9 @@
   
   /* En móvil, el dropdown también usa position absolute pero dentro del nav-menu */
   .dropdown {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   
   .dropdown-menu {
