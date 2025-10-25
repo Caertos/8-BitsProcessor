@@ -21,3 +21,10 @@ exclude:
   - "node_modules/"
   - "package.json"
   - "test/"
+  - "src/**/*.js"
+
+# Include markdown files from src directory
+include:
+  - "src/core/bit/*.md"
+  - "src/core/logicGates/*.md"
+  - "src/core/derivedGates/*.md"

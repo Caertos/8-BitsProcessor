@@ -1,20 +1,31 @@
 <nav class="site-nav">
   <div class="nav-container">
-    <a href="{{ '/' | relative_url }}" class="site-title">⚡ 8-Bit Processor</a>
-    
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-      <button id="lang-toggle" class="lang-btn" aria-label="Switch language">
-        <span id="current-lang">🇪🇸</span>
-      </button>
+    <div class="nav-header">
+      <a href="{{ '/' | relative_url }}" class="site-title">⚡ 8-Bit Processor</a>
+      
+      <div class="nav-controls">
+        <!-- Language Switcher -->
+        <button id="lang-toggle" class="lang-btn" aria-label="Switch language">
+          <span id="current-lang">🇪🇸</span>
+        </button>
+        
+        <!-- Hamburger Menu Button -->
+        <button id="menu-toggle" class="menu-btn" aria-label="Toggle menu">
+          <span class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
     </div>
     
-    <div class="nav-sections">
+    <div class="nav-sections" id="nav-menu">
       <!-- Español Content -->
       <div class="nav-content lang-es active">
         <div class="nav-section">
-          <h3>📚 Documentación</h3>
-          <ul>
+          <h3 class="section-toggle">📚 Documentación <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
             <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
             <li><a href="{{ '/LEEME.html' | relative_url }}">Documentación Principal</a></li>
             <li><a href="{{ '/Estructura.html' | relative_url }}">Estructura del Proyecto</a></li>
@@ -22,17 +33,17 @@
         </div>
         
         <div class="nav-section">
-          <h3>📖 Bitácoras</h3>
-          <ul>
-            <li><a href="{{ '/bit/bitacora1.1.1-es.html' | relative_url }}">Bit</a></li>
-            <li><a href="{{ '/logicGates/bitacora1.1.2-es.html' | relative_url }}">Compuertas Básicas</a></li>
-            <li><a href="{{ '/derivedGates/bitacora1.1.3-es.html' | relative_url }}">Compuertas Derivadas</a></li>
+          <h3 class="section-toggle">📖 Bitácoras <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
+            <li><a href="{{ '/src/core/bit/bitacora1.1.1-es.html' | relative_url }}">Bit</a></li>
+            <li><a href="{{ '/src/core/logicGates/bitacora1.1.2-es.html' | relative_url }}">Compuertas Básicas</a></li>
+            <li><a href="{{ '/src/core/derivedGates/bitacora1.1.3-es.html' | relative_url }}">Compuertas Derivadas</a></li>
           </ul>
         </div>
         
         <div class="nav-section">
-          <h3>🔗 Enlaces</h3>
-          <ul>
+          <h3 class="section-toggle">🔗 Enlaces <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
             <li><a href="{{ '/CHANGELOG-ES.html' | relative_url }}">Registro de Cambios</a></li>
             <li><a href="{{ '/CONTRIBUTING.html' | relative_url }}">Contribuir</a></li>
             <li><a href="https://github.com/Caertos/8-BitsProcessor" target="_blank">📁 Repositorio</a></li>
@@ -43,8 +54,8 @@
       <!-- English Content -->
       <div class="nav-content lang-en">
         <div class="nav-section">
-          <h3>📚 Documentation</h3>
-          <ul>
+          <h3 class="section-toggle">📚 Documentation <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
             <li><a href="{{ '/' | relative_url }}">Home</a></li>
             <li><a href="{{ '/README-EN.html' | relative_url }}">Main Documentation</a></li>
             <li><a href="{{ '/Structure.html' | relative_url }}">Project Structure</a></li>
@@ -52,17 +63,17 @@
         </div>
         
         <div class="nav-section">
-          <h3>📖 Development Logs</h3>
-          <ul>
-            <li><a href="{{ '/bit/bitacora1.1.1-en.html' | relative_url }}">Bit</a></li>
-            <li><a href="{{ '/logicGates/bitacora1.1.2-en.html' | relative_url }}">Basic Gates</a></li>
-            <li><a href="{{ '/derivedGates/bitacora1.1.3-en.html' | relative_url }}">Derived Gates</a></li>
+          <h3 class="section-toggle">📖 Development Logs <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
+            <li><a href="{{ '/src/core/bit/bitacora1.1.1-en.html' | relative_url }}">Bit</a></li>
+            <li><a href="{{ '/src/core/logicGates/bitacora1.1.2-en.html' | relative_url }}">Basic Gates</a></li>
+            <li><a href="{{ '/src/core/derivedGates/bitacora1.1.3-en.html' | relative_url }}">Derived Gates</a></li>
           </ul>
         </div>
         
         <div class="nav-section">
-          <h3>� Links</h3>
-          <ul>
+          <h3 class="section-toggle">🔗 Links <span class="toggle-icon">▼</span></h3>
+          <ul class="section-content">
             <li><a href="{{ '/CHANGELOG-EN.html' | relative_url }}">Changelog</a></li>
             <li><a href="{{ '/CONTRIBUTING.html' | relative_url }}">Contributing</a></li>
             <li><a href="https://github.com/Caertos/8-BitsProcessor" target="_blank">📁 Repository</a></li>
@@ -74,10 +85,12 @@
 </nav>
 
 <script>
-  // Language switcher functionality
+  // Navigation functionality
   (function() {
     const langToggle = document.getElementById('lang-toggle');
+    const menuToggle = document.getElementById('menu-toggle');
     const currentLangSpan = document.getElementById('current-lang');
+    const navMenu = document.getElementById('nav-menu');
     const esContent = document.querySelector('.lang-es');
     const enContent = document.querySelector('.lang-en');
     
@@ -87,6 +100,7 @@
     // Apply saved language on load
     updateLanguage(currentLang);
     
+    // Language switcher
     langToggle.addEventListener('click', function() {
       currentLang = currentLang === 'es' ? 'en' : 'es';
       updateLanguage(currentLang);
@@ -104,5 +118,53 @@
         esContent.classList.remove('active');
       }
     }
+    
+    // Hamburger menu toggle
+    menuToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('nav-open');
+      menuToggle.classList.toggle('active');
+    });
+    
+    // Section toggles
+    const sectionToggles = document.querySelectorAll('.section-toggle');
+    sectionToggles.forEach(function(toggle) {
+      toggle.addEventListener('click', function() {
+        const section = this.parentElement;
+        const content = section.querySelector('.section-content');
+        const icon = this.querySelector('.toggle-icon');
+        
+        section.classList.toggle('collapsed');
+        
+        if (section.classList.contains('collapsed')) {
+          content.style.maxHeight = '0';
+          icon.textContent = '▶';
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          icon.textContent = '▼';
+        }
+      });
+    });
+    
+    // Initialize all sections as expanded
+    document.querySelectorAll('.section-content').forEach(function(content) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-sections a');
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('nav-open');
+        menuToggle.classList.remove('active');
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.site-nav')) {
+        navMenu.classList.remove('nav-open');
+        menuToggle.classList.remove('active');
+      }
+    });
   })();
 </script>
